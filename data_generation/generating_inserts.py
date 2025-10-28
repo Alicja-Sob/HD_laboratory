@@ -1,4 +1,6 @@
 import random
+import uuid
+
 from faker import Faker     # for generating fake data
 from datetime import datetime, timedelta
 from helpers import generate_random_date, random_decimal
@@ -24,7 +26,7 @@ def generate_KLIENT_insert(num, start_date, end_date):
 
 def generate_PRACOWNIK_insert(num, start_date, end_date):
     for _ in range(num):
-        id_pracownika = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^') # 20 char long id from random hex characters
+        id_pracownika = uuid.uuid4().hex[:20] # 20 char long id from random hex characters
         pesel = fake.unique.pesel()
         imie = fake.first_name()
         drugie_imie = fake.first_name() if random.random() < 0.25 else ""
@@ -52,7 +54,7 @@ def generate_ANALITYK_insert(num, pracownik_ids):
 
 def generate_POLISA_insert(num, start_date, end_date, klient_ids, agent_ids):
     for _ in range(num):
-        id_polisy = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^')
+        id_polisy = uuid.uuid4().hex[:20]
         kategoria = random.choice(['majatkowe', 'osobowe', 'komunikacyjne', 'turystyczne'])
         data_rozpoczecia = generate_random_date(start_date, end_date)
         data_zakonczenia = data_rozpoczecia + timedelta(days=random.randint(365, 365 * 5))
@@ -71,7 +73,7 @@ def generate_POSTEPOWANIE_ANALITYK_insert(num, analitycy, postepowania):
 def generate_ZDARZENIE_insert(num, start_date, end_date):
     possible_accidents = ['pozar', 'zalanie', 'wypadek samochodowy', 'upadek', 'wlamanie', 'kradziez', 'atak','uszkodzenie mienia', 'wandalizm', 'inne']
     for _ in range(num):
-        id_zdarzenia = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^')
+        id_zdarzenia = uuid.uuid4().hex[:20]
         data_zdarzenia = generate_random_date(start_date, end_date) # FIXME: should be before start of postepowanie for this zdarzenie
         lokalizacja = fake.street_address() + ", " + fake.city()
         rodzaj = random.choice(possible_accidents)
@@ -80,7 +82,7 @@ def generate_ZDARZENIE_insert(num, start_date, end_date):
 
 def generate_POSTEPOWANIE_insert(num, start_date, end_date, polisy, zdarzenia):
     for _ in range(num):
-        id_postepowania = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^')
+        id_postepowania = uuid.uuid4().hex[:20]
         data_rozpoczecia = generate_random_date(start_date, end_date)   # FIXME: this should to be between the start and end dates of the polisa associated with this!!
         data_zakonczenia = data_rozpoczecia + timedelta(days=random.randint(365, 365 * 5))
         liczba_dokumentow = random.randint(1, 50) # FIXME: this should correspond to the amount of files in the excel
@@ -92,14 +94,14 @@ def generate_POSTEPOWANIE_insert(num, start_date, end_date, polisy, zdarzenia):
 def generate_ODWOLANIE_insert(num, start_date, end_date, postepowania):
     for _ in range(num):
         postepowanie = random.choice(postepowania)
-        id_odwolania = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^')
+        id_odwolania = uuid.uuid4().hex[:20]
         _status = random.choice(['przyjete', 'przetwarzane', 'zakonczone'])
         data_odwolania = generate_random_date(start_date, end_date) # FIXME: should be after end date of the postepowanie associated
         yield [postepowanie, id_odwolania, _status, data_odwolania]
 
 def generate_ODSZKODOWANIE_insert(num, postepowania):
     for _ in range(num):
-        id_odszkodowania = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^')
+        id_odszkodowania = uuid.uuid4().hex[:20]
         kwota =  random_decimal(1000, 1000000000)
         postepowanie = random.choice(postepowania)
         _status = random.choice(['oczekuje', 'zrealizowane', 'anulowane', 'opoznione', 'w toku'])
@@ -107,7 +109,7 @@ def generate_ODSZKODOWANIE_insert(num, postepowania):
 
 def generate_NAPRAWY_insert(num, start_date, end_date, odszkodowania):
     for _ in range(num):
-        id_naprawy = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^')
+        id_naprawy = uuid.uuid4().hex[:20]
         id_odszkodowania = random.choice(odszkodowania)
         koszt = random_decimal(1000, 1000000000)  # FIXME: ideally this and platnosc should add up do associated odszkodowanie koszt
         data_rozpoczecia = generate_random_date(start_date, end_date)   # FIXME: this should to be between the start and end dates of the postepowanie associated with this!!
@@ -117,7 +119,7 @@ def generate_NAPRAWY_insert(num, start_date, end_date, odszkodowania):
 
 def generate_PLATNOSC_insert(num, start_date, end_date, odszkodowania):
     for _ in range(num):
-        id_platnosci = fake.unique.bothify(text='^^^^^^^^^^^^^^^^^^^^')
+        id_platnosci = uuid.uuid4().hex[:20]
         id_odszkodowania = random.choice(odszkodowania)
         metoda_realizacji = random.choices(['przelew', 'gotowka'], weights=[5, 2])
         konto = fake.iban() if metoda_realizacji == ['przelew'] else "" # international banking account
