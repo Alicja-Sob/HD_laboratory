@@ -49,7 +49,7 @@ def generate_ANALITYK_insert(num, pracownik_ids):
         id_analityka = random.choice(pracownik_ids)
         rola = random.choice(possible_roles)
         dzial = random.choice(possible_departments)
-        zespol = fake.unique.bothify(text='?????-#####') # team id cause idk how else to distinguish them
+        zespol = fake.bothify(text='?????-#####') # team id cause idk how else to distinguish them
         yield [id_analityka, rola, dzial, zespol]
 
 def generate_POLISA_insert(num, start_date, end_date, klient_ids, agent_ids):
