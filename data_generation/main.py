@@ -16,12 +16,14 @@ if __name__ == '__main__':
     snap2_end = datetime(2025, 12, 31)
 
     nums1 = [400000, 5000, 3000, 2000, 800000, 800000, 1000000, 900000, 200000, 900000, 300000, 800000] # amounts for tables
+    nums2_updates = [1000, 500, 300, 600, 1000, 2000, 100, 500, 1000]
+
     logging.info("\tGENERATING SNAPSHOT 1")
-    generating_time_snapshot("snapshot1", snap1_start, snap1_end, nums1) # generating .bulk files for the first snapshot
+    # updates are generated from snapshot1 data this way
+    generating_time_snapshot("snapshot1", snap1_start, snap1_end, nums1, nums2_updates, True) # generating .bulk files for the first snapshot
     logging.info("\tdone GENERATING SNAPSHOT 1")
 
     nums2_inserts = [10000, 1000, 500, 200, 50000, 50000, 100000, 150000, 10000, 140000, 40000, 100000]
-    nums2_updates = [1000, 500, 300, 600, 1000, 2000, 100, 500, 1000]
     logging.info("\tGENERATING SNAPSHOT 2")
-    generating_time_snapshot("snapshot2", snap2_start, snap2_end, nums2_inserts, nums2_updates, True) # generating .bulk files for the second snapshot
+    generating_time_snapshot("snapshot2", snap2_start, snap2_end, nums2_inserts) # generating .bulk files for the second snapshot
     logging.info("\tdone GENERATING SNAPSHOT 2")

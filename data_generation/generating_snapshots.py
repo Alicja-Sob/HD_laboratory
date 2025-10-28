@@ -1,8 +1,10 @@
 import os
+import logging
+
 from generating_inserts import *
 from generating_updates import *
 from helpers import *
-import logging
+
 logging.basicConfig(level=logging.INFO)
 
 fake = Faker('pl_PL')  # fake data as if from Poland
@@ -12,7 +14,7 @@ Each table in a seperate bulk file but all updates in one sql file
 """
 
 def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates = None, updates = False):
-    folder = os.makedirs(snapshot, exist_ok=True) or snapshot
+    folder = os.makedirs(os.path.join("snapshots", snapshot), exist_ok=True) or os.path.join("snapshots", snapshot)
 
     # ---------- generating KLIENT table ----------
     klient_rows = list(generate_KLIENT_insert(nums[0], start_date, end_date))    #400k
@@ -86,14 +88,14 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
     logging.info("done writing PLATNOSC inserts to file")
 
     # ------------------ generating updates for a snapshot ------------------
-    if updates:
-        write_update_file(os.path.join(folder, "updates"), generate_KLIENT_updates(nums_updates[0], klient_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_AGENT_updates(nums_updates[1], agent_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_ANALITYK_updates(nums_updates[2], analityk_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_PRACOWNIK_updates(nums_updates[3], pracownik_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_POLISA_updates(nums_updates[4], polisa_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_PLATNOSC_updates(nums_updates[5], platnosc_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_NAPRAWY_updates(nums_updates[6], naprawy_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_ODSZKODOWANIE_updates(nums_updates[7], odszkodowanie_ids))
-        write_update_file(os.path.join(folder, "updates"), generate_ODWOLANIE_updates(nums_updates[8], odwolanie_ids))
+    if updates: # FIXME load to snapshot 2 folder and not snapshot1.. or just no folder?
+        write_update_file(os.path.join("snapshots", "updates"), generate_KLIENT_updates(nums_updates[0], klient_ids), mode='w')
+        write_update_file(os.path.join("snapshots", "updates"), generate_AGENT_updates(nums_updates[1], agent_ids))
+        write_update_file(os.path.join("snapshots", "updates"), generate_ANALITYK_updates(nums_updates[2], analityk_ids))
+        write_update_file(os.path.join("snapshots", "updates"), generate_PRACOWNIK_updates(nums_updates[3], pracownik_ids))
+        write_update_file(os.path.join("snapshots", "updates"), generate_POLISA_updates(nums_updates[4], polisa_ids))
+        write_update_file(os.path.join("snapshots", "updates"), generate_PLATNOSC_updates(nums_updates[5], platnosc_ids))
+        write_update_file(os.path.join("snapshots", "updates"), generate_NAPRAWY_updates(nums_updates[6], naprawy_ids))
+        write_update_file(os.path.join("snapshots", "updates"), generate_ODSZKODOWANIE_updates(nums_updates[7], odszkodowanie_ids))
+        write_update_file(os.path.join("snapshots", "updates"), generate_ODWOLANIE_updates(nums_updates[8], odwolanie_ids))
         logging.info("Done writing updates to file")

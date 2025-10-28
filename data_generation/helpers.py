@@ -1,6 +1,10 @@
 import csv
 import random
+import uuid
 from datetime import timedelta
+
+from faker import Faker     # for generating fake data
+fake = Faker('pl_PL')  # fake data as if from Poland
 
 # ---------- HELPER METHODS ----------
 def generate_random_date(start_date, end_date):
@@ -17,8 +21,22 @@ def write_bulk_file(filename, rows):
         for row in rows:
             writer.writerow(row)
 
-def write_update_file(filename, updates):
+def write_update_file(filename, updates, mode='a'):
     # writes them to a single sql file
-    with open(f"{filename}.sql", 'a', encoding='utf-8') as file:
+    with open(f"{filename}.sql", mode, encoding='utf-8') as file:
         for update in updates:
             file.write(update + "\n")
+
+def generate_unique_pesel(all_pesels):
+    while True:
+        pesel = fake.pesel()
+        if pesel not in all_pesels:
+            all_pesels.add(pesel)
+            return pesel
+
+def generate_unique_id(existing_ids):
+    while True:
+        new_id = uuid.uuid4().hex[:20]
+        if new_id not in existing_ids:
+            existing_ids.add(new_id)
+            return new_id
