@@ -1,3 +1,9 @@
+USE master;
+ALTER DATABASE SystemPrzechowujacyDane 
+SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+DROP DATABASE SystemPrzechowujacyDane;
+GO
+
 CREATE database SystemPrzechowujacyDane
 GO
 
@@ -111,7 +117,7 @@ CREATE TABLE Naprawy (
 CREATE TABLE Platnosc (
 	ID_platnosci VARCHAR(20) PRIMARY KEY,
 	ID_odszkodowania VARCHAR(20) FOREIGN KEY REFERENCES Odszkodowanie,
-	Konto VARCHAR(21), -- iban number
+	Konto VARCHAR(28), -- iban number
 	Kwota DECIMAL(15,2) NOT NULL CHECK (Kwota>0),
 	Metoda_realizacji VARCHAR(7) NOT NULL 
 		CHECK (Metoda_realizacji IN ('przelew', 'gotowka')),
