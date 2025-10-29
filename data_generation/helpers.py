@@ -24,6 +24,9 @@ def write_bulk_file(filename, rows):
 def write_update_file(filename, updates, mode='a'):
     # writes them to a single sql file
     with open(f"{filename}.sql", mode, encoding='utf-8') as file:
+        if mode == 'w':
+            file.write("USE SystemPrzechowujacyDane\n")
+            file.write("GO\n\n")
         for update in updates:
             file.write(update + "\n")
 
@@ -33,7 +36,6 @@ def write_excel_file(filename, dane):
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()    # idk if this should have the header or not
         writer.writerows(dane)
-
 
 def generate_unique_pesel(all_pesels):
     while True:

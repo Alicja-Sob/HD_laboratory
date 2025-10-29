@@ -25,7 +25,7 @@ def generate_ANALITYK_updates(num, ids):
     possible_departments = ['analiza i bi', 'ryzyko', 'roszczenia', 'operacje', 'finanse', 'IT', 'zgodnosc', 'prawo']
     updates = []
     for id in random.sample(ids, min(num, len(ids))):
-        updates.append(f"UPDATE Analityk SET Zespol = '{random.choice(possible_departments)}', Zespol = '{fake.bothify(text='?????-#####')}'WHERE ID_analityka = '{id}';")
+        updates.append(f"UPDATE Analityk SET Dzial = '{random.choice(possible_departments)}', Zespol = '{fake.bothify(text='?????-#####')}'WHERE ID_analityka = '{id}';")
     return updates
 
 def generate_PRACOWNIK_updates(num, ids):
@@ -58,7 +58,7 @@ def generate_ODSZKODOWANIE_updates(num, ids):
         updates.append(f"UPDATE Odszkodowanie SET _Status = '{random.choice(['oczekuje', 'zrealizowane', 'anulowane', 'opoznione', 'w toku'])}' WHERE ID_odszkodowania = '{id}';")
     return updates
 
-def generate_ODWOLANIE_updates(num, ids):
+def generate_ODWOLANIE_updates(num, ids):   #FIXME ??
     updates = []
     for id in random.sample(ids, min(num, len(ids))):
         updates.append(f"UPDATE Odwolanie SET _Status = '{random.choice(['przyjete', 'przetwarzane', 'zakonczone'])}' WHERE ID_odwolania = '{id}';")
