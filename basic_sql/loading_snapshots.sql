@@ -60,3 +60,7 @@ SELECT
 -- showing full example enity for a table
 SELECT TOP 1 * FROM Klient ORDER BY Data_urodzenia;
 GO
+
+-- for later comparison with state after updates
+SELECT _Status, COUNT(*) AS status_odszkodowanie FROM Odszkodowanie GROUP BY _Status ORDER BY _Status;
+SELECT _Status, COUNT(*) AS status_Odwolanie FROM Odwolanie GROUP BY _Status ORDER BY _Status;
