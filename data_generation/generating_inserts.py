@@ -5,7 +5,7 @@ from faker import Faker     # for generating fake data
 from datetime import datetime, timedelta
 from helpers import generate_random_date, random_decimal, generate_unique_pesel, generate_unique_id, splitting_id_pool
 
-fake = Faker('pl_PL')  # fake data as if from Poland
+fake = Faker('en_US')  # fake data as if from US cause polish signs
 
 """
 HOW REALISTIC DOES THIS DATA NEED TO BE? CAUSE THIS WOULD INVOLVE MAKING SURE NAPRAWY ARE ONLY FOR CERTAIN TYPES OF ZDARZENIA
@@ -24,7 +24,7 @@ def generate_KLIENT_insert(num, start_date, end_date):
         imie = fake.first_name()
         drugie_imie = fake.first_name() if random.random() < 0.25 else ""
         nazwisko = fake.last_name()
-        data_urodzenia = generate_random_date(start_date - timedelta(days=68*635), end_date- timedelta(days=18*635))
+        data_urodzenia = generate_random_date(start_date - timedelta(days=68*365), end_date- timedelta(days=18*365))
         yield [pesel, imie, drugie_imie, nazwisko, data_urodzenia]
 
 def generate_PRACOWNIK_insert(num, start_date, end_date):

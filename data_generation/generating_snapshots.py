@@ -8,7 +8,7 @@ from helpers import *
 
 logging.basicConfig(level=logging.INFO)
 
-fake = Faker('pl_PL')  # fake data as if from Poland
+fake = Faker('en_US')  # fake data as if from Poland
 
 """
 Each table in a seperate bulk file but all updates in one sql file
@@ -67,7 +67,7 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
     # ---------- generating ODWOLANIE table ----------
     odwolanie_rows = list(generate_ODWOLANIE_insert(nums[7], start_date, end_date, postepowanie_ids)) # 200k
     write_bulk_file(os.path.join(folder, "Odwolanie_inserts"), odwolanie_rows)
-    odwolanie_ids = [row[0] for row in odwolanie_rows]
+    odwolanie_ids = [row[1] for row in odwolanie_rows]
     logging.info("done writing ODWOLANIE inserts to file")
 
     # ---------- generating ODSZKODOWANIE table ----------

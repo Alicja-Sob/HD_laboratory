@@ -3,7 +3,7 @@ from faker import Faker     # for generating fake data
 
 from helpers import random_decimal
 
-fake = Faker('pl_PL')  # fake data as if from Poland
+fake = Faker('en_US')  # fake data as if from Poland
 
 # ---------- GENERATING UPDATES ----------
 # The issue is those updates (esp the status ones) one really make sense - they are generated at random after all.

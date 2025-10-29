@@ -5,7 +5,7 @@ from faker import Faker     # for generating fake data
 from datetime import datetime, timedelta
 from generating_snapshots import generating_time_snapshot
 
-fake = Faker('pl_PL')  # fake data as if from Poland
+fake = Faker('en_US')  # fake data as if from Poland
 
 if __name__ == '__main__':
     # defining snapshot spans

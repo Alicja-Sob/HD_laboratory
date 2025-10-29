@@ -17,6 +17,22 @@ BULK INSERT dbo.Naprawy FROM 'C:\Users\sobal\PycharmProjects\generating_inserts\
 BULK INSERT dbo.Platnosc FROM 'C:\Users\sobal\PycharmProjects\generating_inserts\snapshots\snapshot1\Platnosc_inserts.bulk' WITH (FIELDTERMINATOR='|')
 GO
 
+-- SELECT queries presenting the data for snapshot 1
+
+SELECT
+	-- showing min and maxes dates in whole database
+	(SELECT MIN(Data_zdarzenia) FROM Zdarzenie) AS Min_data_zdarzenie,    
+	(SELECT MIN(Data_zatrudnienia) FROM Pracownik) AS Min_data_zatrudnienia,
+    (SELECT MAX(Data_rozpoczecia) FROM Postepowanie) AS Max_data_postepowanie,    
+	(SELECT MAX(Data_zatrudnienia) FROM Pracownik) AS Max_data_zatrudnienia,
+	-- showing count of entities in 2-3 tables
+	(SELECT COUNT(*) FROM Klient) AS Liczba_klientow,
+    (SELECT COUNT(*) FROM Postepowanie) AS Liczba_postepowan,
+    (SELECT COUNT(*) FROM Zdarzenie) AS Liczba_zdarzen;
+-- showing full example enity for a table
+SELECT TOP 1 * FROM Klient ORDER BY Data_urodzenia;
+GO
+
 -- loading snapshots\snapshot2 inserts
 BULK INSERT dbo.Klient FROM 'C:\Users\sobal\PycharmProjects\generating_inserts\snapshots\snapshot2\Klient_inserts.bulk' WITH (FIELDTERMINATOR='|')
 BULK INSERT dbo.Pracownik FROM 'C:\Users\sobal\PycharmProjects\generating_inserts\snapshots\snapshot2\Pracownik_inserts.bulk' WITH (FIELDTERMINATOR='|')
@@ -32,5 +48,15 @@ BULK INSERT dbo.Naprawy FROM 'C:\Users\sobal\PycharmProjects\generating_inserts\
 BULK INSERT dbo.Platnosc FROM 'C:\Users\sobal\PycharmProjects\generating_inserts\snapshots\snapshot2\Platnosc_inserts.bulk' WITH (FIELDTERMINATOR='|')
 GO
 
--- loading snapshots\snapshot2 updates
--- i have no idea how to do that??
+-- SELECT queries presenting the data for snapshot 2
+SELECT
+	-- showing min and maxes dates in whole database
+	(SELECT MAX(Data_zdarzenia) FROM Zdarzenie) AS Max_data_zdarzenie,
+    (SELECT MAX(Data_zatrudnienia) FROM Pracownik) AS Max_data_zatrudnienia,
+	-- showing count of entities in 2-3 tables
+	(SELECT COUNT(*) FROM Klient) AS Liczba_klientow,
+    (SELECT COUNT(*) FROM Postepowanie) AS Liczba_postepowan,
+    (SELECT COUNT(*) FROM Zdarzenie) AS Liczba_zdarzen;
+-- showing full example enity for a table
+SELECT TOP 1 * FROM Klient ORDER BY Data_urodzenia;
+GO
