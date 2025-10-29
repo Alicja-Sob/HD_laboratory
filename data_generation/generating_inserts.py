@@ -12,7 +12,7 @@ HOW REALISTIC DOES THIS DATA NEED TO BE? CAUSE THIS WOULD INVOLVE MAKING SURE NA
 AND ALL THE DATES ARE MATCHING BETWEEN LIKE AT LEAST 5 TABLES, THE COMPANY NAMES WOULD HAVE TO BE VETTED BETTER ETC ?! 
 """
 
-# FIXME: THE ID'S ARE NOT ALWAYS UNIQUE FOR AGENT AND ANALITYK???
+# FIXME: THE ID'S ARE NOT ALWAYS UNIQUE for post-analityk table
 all_pesels = set()
 existing_ids = set()
 all_pracownik_ids = set()
@@ -70,11 +70,12 @@ def generate_POLISA_insert(num, start_date, end_date, klient_ids, agent_ids):
         yield [id_polisy, kategoria, data_rozpoczecia, data_zakonczenia, premium, klient, agent]
 
 
-def generate_POSTEPOWANIE_ANALITYK_insert(num, analitycy, postepowania):
-    for _ in range(num):
-        id_postepowania = random.choice(postepowania)
-        id_analityka = random.choice(analitycy)
-        yield [id_postepowania, id_analityka]
+def generate_POSTEPOWANIE_ANALITYK_insert(analitycy, postepowania):
+    for pstp in postepowania:
+        team_size = random.randint(3, 8)
+        selected_team = random.sample(analitycy, team_size)
+        for id_analityka in selected_team:
+            yield [pstp, id_analityka]
 
 def generate_ZDARZENIE_insert(num, start_date, end_date):
     possible_accidents = ['pozar', 'zalanie', 'wypadek samochodowy', 'upadek', 'wlamanie', 'kradziez', 'atak','uszkodzenie mienia', 'wandalizm', 'inne']

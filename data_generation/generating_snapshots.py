@@ -60,30 +60,30 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
     logging.info("done writing POSTEPOWANIE inserts to file")
 
     # ---------- generating POSTEPOWANIE_ANALITYK table ----------
-    post_an_rows = list(generate_POSTEPOWANIE_ANALITYK_insert(nums[7], analityk_ids, postepowanie_ids)) # 900k FIXME: idk how many should be here
+    post_an_rows = list(generate_POSTEPOWANIE_ANALITYK_insert(analityk_ids, postepowanie_ids)) # 900k FIXME: idk how many should be here
     write_bulk_file(os.path.join(folder, "Pol_An_inserts"), post_an_rows)
     logging.info("done writing POSTEPOWANIE-ANALITYK inserts to file")
 
     # ---------- generating ODWOLANIE table ----------
-    odwolanie_rows = list(generate_ODWOLANIE_insert(nums[8], start_date, end_date, postepowanie_ids)) # 200k
+    odwolanie_rows = list(generate_ODWOLANIE_insert(nums[7], start_date, end_date, postepowanie_ids)) # 200k
     write_bulk_file(os.path.join(folder, "Odwolanie_inserts"), odwolanie_rows)
     odwolanie_ids = [row[0] for row in odwolanie_rows]
     logging.info("done writing ODWOLANIE inserts to file")
 
     # ---------- generating ODSZKODOWANIE table ----------
-    odszkodowanie_rows = list(generate_ODSZKODOWANIE_insert(nums[9], postepowanie_ids)) # 900k
+    odszkodowanie_rows = list(generate_ODSZKODOWANIE_insert(nums[8], postepowanie_ids)) # 900k
     write_bulk_file(os.path.join(folder, "Odszkodowanie_inserts"), odszkodowanie_rows)
     odszkodowanie_ids = [row[0] for row in odszkodowanie_rows] # for later foreign keys
     logging.info("done writing ODSZKODOWANIE inserts to file")
 
     # ---------- generating NAPRAWY table ----------
-    naprawy_rows = list(generate_NAPRAWY_insert(nums[10], start_date, end_date, odszkodowanie_ids)) # 300k
+    naprawy_rows = list(generate_NAPRAWY_insert(nums[9], start_date, end_date, odszkodowanie_ids)) # 300k
     write_bulk_file(os.path.join(folder, "Naprawy_inserts"), naprawy_rows)
     naprawy_ids = [row[0] for row in naprawy_rows]
     logging.info("done writing NAPRAWY inserts to file")
 
     # ---------- generating PLATNOSC table ----------
-    platnosc_rows = list(generate_PLATNOSC_insert(nums[11], start_date, end_date, odszkodowanie_ids)) #800k
+    platnosc_rows = list(generate_PLATNOSC_insert(nums[10], start_date, end_date, odszkodowanie_ids)) #800k
     write_bulk_file(os.path.join(folder, "Platnosc_inserts"), platnosc_rows)
     platnosc_ids = [row[0] for row in platnosc_rows]
     logging.info("done writing PLATNOSC inserts to file")
