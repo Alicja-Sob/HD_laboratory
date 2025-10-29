@@ -3,7 +3,7 @@ import uuid
 
 from faker import Faker     # for generating fake data
 from datetime import datetime, timedelta
-from helpers import generate_random_date, random_decimal, generate_unique_pesel, generate_unique_id
+from helpers import generate_random_date, random_decimal, generate_unique_pesel, generate_unique_id, splitting_id_pool
 
 fake = Faker('pl_PL')  # fake data as if from Poland
 
@@ -15,6 +15,7 @@ AND ALL THE DATES ARE MATCHING BETWEEN LIKE AT LEAST 5 TABLES, THE COMPANY NAMES
 # FIXME: THE ID'S ARE NOT ALWAYS UNIQUE FOR AGENT AND ANALITYK???
 all_pesels = set()
 existing_ids = set()
+all_pracownik_ids = set()
 
 # ---------- GENERATING INSERTS ----------
 def generate_KLIENT_insert(num, start_date, end_date):
@@ -37,8 +38,10 @@ def generate_PRACOWNIK_insert(num, start_date, end_date):
         yield [id_pracownika, pesel, imie, drugie_imie, nazwisko, data_zatrudnienia]
 
 def generate_AGENT_insert(num, pracownik_ids):
-    for _ in range(num):
-        id_agenta = random.choice(pracownik_ids)    # foreign key
+    agent_id_pool = splitting_id_pool(pracownik_ids, num)[0]
+    #print(agent_id_pool)
+    for id in agent_id_pool:
+        id_agenta = id    # foreign key
         placowka = fake.city()  # idk if this should be a full address or if just a city is fine
         specjalnosc = random.choice(['majatkowe', 'osobowe', 'komunikacyjne', 'turystyczne']) if random.random() < 0.05 else ""
         yield [id_agenta, placowka, specjalnosc]
@@ -47,8 +50,9 @@ def generate_ANALITYK_insert(num, pracownik_ids):
     # idk if these are alright, made them up but idk what type of jobs are there actually in a firm like this
     possible_roles = ['mlodszy analityk danych', 'analityk danych', 'starszy analityk danych', 'analityk biznesowy', 'analityk procesow', 'Kierownik zespolu']
     possible_departments = ['analiza i bi', 'ryzyko', 'roszczenia', 'operacje', 'finanse', 'IT', 'zgodnosc', 'prawo']
-    for _ in range(num):
-        id_analityka = random.choice(pracownik_ids)
+    analityk_id_pool = splitting_id_pool(pracownik_ids, len(pracownik_ids) - num)[1]
+    for id in analityk_id_pool:
+        id_analityka = id
         rola = random.choice(possible_roles)
         dzial = random.choice(possible_departments)
         zespol = fake.bothify(text='?????-#####') # team id cause idk how else to distinguish them
@@ -68,8 +72,8 @@ def generate_POLISA_insert(num, start_date, end_date, klient_ids, agent_ids):
 
 def generate_POSTEPOWANIE_ANALITYK_insert(num, analitycy, postepowania):
     for _ in range(num):
-        id_postepowania = random.choice(analitycy)
-        id_analityka = random.choice(postepowania)
+        id_postepowania = random.choice(postepowania)
+        id_analityka = random.choice(analitycy)
         yield [id_postepowania, id_analityka]
 
 def generate_ZDARZENIE_insert(num, start_date, end_date):

@@ -15,6 +15,7 @@ if __name__ == '__main__':
     snap2_start = datetime(2021, 2, 1)  # month later
     snap2_end = datetime(2025, 12, 31)
 
+    # nums [1,2,3] must satisfy 1>=2+3 (pracownik = agent + analityk)
     nums1 = [400000, 5000, 3000, 2000, 800000, 800000, 1000000, 900000, 200000, 900000, 300000, 800000] # amounts for tables
     nums2_updates = [1000, 500, 300, 600, 1000, 2000, 100, 500, 1000]
 

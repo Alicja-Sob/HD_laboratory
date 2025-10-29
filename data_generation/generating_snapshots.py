@@ -1,6 +1,7 @@
 import os
 import logging
 
+from data_generation.generating_excel_data import generate_excel_entry
 from generating_inserts import *
 from generating_updates import *
 from helpers import *
@@ -13,7 +14,7 @@ fake = Faker('pl_PL')  # fake data as if from Poland
 Each table in a seperate bulk file but all updates in one sql file
 """
 
-def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates = None, updates = False):
+def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates = None, updates = False, excel_post = 5000):
     folder = os.makedirs(os.path.join("snapshots", snapshot), exist_ok=True) or os.path.join("snapshots", snapshot)
 
     # ---------- generating KLIENT table ----------
@@ -86,6 +87,11 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
     write_bulk_file(os.path.join(folder, "Platnosc_inserts"), platnosc_rows)
     platnosc_ids = [row[0] for row in platnosc_rows]
     logging.info("done writing PLATNOSC inserts to file")
+
+    # ------------------ generating excel ------------------
+    dokumenty = generate_excel_entry(random.sample(postepowanie_ids, excel_post), start_date, end_date, random.randint(7, 15))  # n = 3 documents each
+    write_excel_file(os.path.join("snapshots", f"dokumenty_{snapshot}"), dokumenty)
+    logging.info("done generating EXCEL file")
 
     # ------------------ generating updates for a snapshot ------------------
     if updates: # FIXME load to snapshot 2 folder and not snapshot1.. or just no folder?

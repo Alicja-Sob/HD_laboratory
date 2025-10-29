@@ -27,6 +27,14 @@ def write_update_file(filename, updates, mode='a'):
         for update in updates:
             file.write(update + "\n")
 
+def write_excel_file(filename, dane):
+    fieldnames = list(dane[0].keys())
+    with open(f"{filename}.csv", mode="w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()    # idk if this should have the header or not
+        writer.writerows(dane)
+
+
 def generate_unique_pesel(all_pesels):
     while True:
         pesel = fake.pesel()
@@ -40,3 +48,11 @@ def generate_unique_id(existing_ids):
         if new_id not in existing_ids:
             existing_ids.add(new_id)
             return new_id
+
+def splitting_id_pool(pracownik_ids, num_ag):
+    num_an = len(pracownik_ids) - num_ag
+    # random.shuffle(pracownik_ids)
+    agent_ids = pracownik_ids[:num_ag]
+    analityk_ids = pracownik_ids[num_ag:num_ag+num_an]
+
+    return agent_ids, analityk_ids
