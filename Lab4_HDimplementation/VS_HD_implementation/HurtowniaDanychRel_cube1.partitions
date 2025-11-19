@@ -1,0 +1,145 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="e7b4096e-3e2c-4b8f-bcc0-ae2ca586a316" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>HurtowniaDanychRel_cube1</ID>
+  <MeasureGroups>
+    <MeasureGroup>
+      <ID>Analiza Dokumentow</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="13988488-75e5-4373-8878-394f8f13a70d">
+          <ID>Analiza Dokumentow</ID>
+          <Name>Analiza Dokumentow</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="3ee357bf-1781-4482-a027-2f29c81027a7">
+            <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+            <TableID>dbo_Analiza_Dokumentow</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Postepowanie</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="043b6159-3b7a-454b-a3b9-d9939a19deec">
+          <ID>Postepowanie</ID>
+          <Name>Postepowanie</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="95f82a57-6128-4cc8-8cea-32f6dd2e4895">
+            <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+            <TableID>dbo_Postepowanie</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Zakup Polisy</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="67d99e0b-ea37-4b65-882c-385685f2702a">
+          <ID>Zakup Polisy</ID>
+          <Name>Zakup Polisy</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="46d09615-cb8e-4b37-bf63-5e4b148fc8a7">
+            <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+            <TableID>dbo_Zakup_Polisy</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Rozliczenie Odszkodowania</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="e012c988-f38f-4e7a-b3f4-4d5172e9b3d4">
+          <ID>Rozliczenie Odszkodowania</ID>
+          <Name>Rozliczenie Odszkodowania</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="35de3445-b801-4e06-bad1-658c873a65ad">
+            <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+            <TableID>dbo_Rozliczenie_odszkodowania</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Kompilacja Analizy</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="2df50ebc-4eac-43c0-993a-ca3031465a92">
+          <ID>Kompilacja Analizy</ID>
+          <Name>Kompilacja Analizy</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="c821cedd-3f8b-483e-a7f2-c87bd84b9293">
+            <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+            <TableID>dbo_Kompilacja_analizy</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Zebranie Dokumentu</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="4a4a50f6-9a22-4ca7-9b87-7c5343d59e60">
+          <ID>Zebranie Dokumentu</ID>
+          <Name>Zebranie Dokumentu</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="1d499a2c-655e-47a8-9ed9-7170f7c561a0">
+            <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+            <TableID>dbo_Zebranie_Dokumentu</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+    <MeasureGroup>
+      <ID>Przypisanie Pracownika</ID>
+      <Partitions>
+        <Partition dwd:design-time-name="9b1e1138-d4b2-4d52-a241-f59aaee85f7a">
+          <ID>Przypisanie Pracownika</ID>
+          <Name>Przypisanie Pracownika</Name>
+          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+          <State>Unprocessed</State>
+          <Source xsi:type="DsvTableBinding" dwd:design-time-name="7f473814-fbdc-4e10-9a53-88079b2b4fbd">
+            <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+            <TableID>dbo_Przypisanie_pracownika</TableID>
+          </Source>
+          <StorageMode>Molap</StorageMode>
+          <CurrentStorageMode>Molap</CurrentStorageMode>
+          <ProcessingMode>Regular</ProcessingMode>
+        </Partition>
+      </Partitions>
+    </MeasureGroup>
+  </MeasureGroups>
+</Cube>

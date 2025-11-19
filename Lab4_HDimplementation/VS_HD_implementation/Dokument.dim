@@ -1,0 +1,225 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="8df4ebc7-63b4-414a-951b-7e8d60e97db3" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dokument</ID>
+  <Name>Dokument</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="59892bc7-6038-4394-ba71-b108275986db">
+    <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+  </Source>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="7e1ea918-b471-447f-8b2d-3f35d75f4987">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="afc5068b-d38f-4eba-9db8-4426c4cf7089">
+      <ID>ID Dokument</ID>
+      <Name>ID Dokument</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ace540a6-e39e-4176-b5ea-0e2f489061ca">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9f80fede-c9d0-43af-97ee-8db881adc702">
+            <TableID>dbo_Dokument</TableID>
+            <ColumnID>ID_dokument</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="760b2b1e-c4c7-4530-840f-62c3abe0f3d4">
+          <AttributeID>Nazwa</AttributeID>
+          <Name>Nazwa</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="8051c7ac-fd4b-48a4-8fac-d1e4c0ec5e60">
+          <AttributeID>Autor</AttributeID>
+          <Name>Autor</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="57118e65-bccc-48cf-bcf8-dccab7b2b0bb">
+          <AttributeID>Data Dostarczenia</AttributeID>
+          <Name>Data Dostarczenia</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="de5e15f8-f070-4f82-9d01-4c45fba20cf3">
+          <AttributeID>Opoznienie Dostarczenia</AttributeID>
+          <Name>Opoznienie Dostarczenia</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="524b92b1-a372-489b-be0e-93cfb7252ab3">
+          <AttributeID>Rozszerzenie</AttributeID>
+          <Name>Rozszerzenie</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="53e38074-8411-4dbf-bdf4-e907bf7b475d">
+          <AttributeID>ID Typ</AttributeID>
+          <Name>ID Typ</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2503cdf2-5473-4519-a4aa-af2be673e510">
+      <ID>Nazwa</ID>
+      <Name>Nazwa</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="e7c2dc1b-5660-4aaa-b57c-1fb528edccb0">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="eef1469d-f32d-42b8-856b-0df8bf4296c1">
+            <TableID>dbo_Dokument</TableID>
+            <ColumnID>Nazwa</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="a8a2089a-7544-4f37-8834-4d1702dc5782">
+      <ID>Autor</ID>
+      <Name>Autor</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2a82098a-4958-4499-9a79-40de1f5d58d2">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="52e84d8f-d302-4ae2-b7c6-d4991daafc60">
+            <TableID>dbo_Dokument</TableID>
+            <ColumnID>Autor</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1ae42766-1de2-465d-9710-69d1495b24f1">
+      <ID>Data Dostarczenia</ID>
+      <Name>Data Dostarczenia</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="aafa6d38-296c-4ad5-be74-c7fea2edafe8">
+          <DataType>Date</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="58669b4a-153b-4a17-a79d-90ada92a10a4">
+            <TableID>dbo_Dokument</TableID>
+            <ColumnID>Data_dostarczenia</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f070d634-f126-4001-a270-c9328dc42f04">
+      <ID>Opoznienie Dostarczenia</ID>
+      <Name>Opoznienie Dostarczenia</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="28f82e4f-79c3-408a-b304-2980944be665">
+          <DataType>WChar</DataType>
+          <DataSize>16</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="afec30d1-8fe3-4295-b4b6-001f575edbd1">
+            <TableID>dbo_Dokument</TableID>
+            <ColumnID>Opoznienie_dostarczenia</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="45c58cbe-8e3e-4d32-9024-93abc9138de1">
+      <ID>Rozszerzenie</ID>
+      <Name>Rozszerzenie</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2d95ba1b-7e99-49a0-b650-a9fd921d69ed">
+          <DataType>WChar</DataType>
+          <DataSize>5</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="2666ac5b-0ed0-4e3c-bb89-d8d83720e0a9">
+            <TableID>dbo_Dokument</TableID>
+            <ColumnID>rozszerzenie</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="f0cb3f16-f7a1-4dbe-92d1-edd987e84fe4">
+      <ID>ID Typ</ID>
+      <Name>ID Typ</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="ca1760a0-8ffa-4eea-bda9-20c8023c0975">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="00adaf5e-e74d-4b92-b966-60b9aa9400d3">
+            <TableID>dbo_Typ_Dokument</TableID>
+            <ColumnID>ID_typ</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="a1976825-b0a4-47a4-b2f7-807aa8510ac9">
+          <AttributeID>Typ Dokumentu</AttributeID>
+          <Name>Typ Dokumentu</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="93015796-0680-4c1f-b5a5-02866ebcfd63">
+      <ID>Typ Dokumentu</ID>
+      <Name>Typ Dokumentu</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="14d6411c-64e4-4834-a8a2-fd47ac2e8e16">
+          <DataType>WChar</DataType>
+          <DataSize>13</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bc3308a2-ea85-429c-a508-ca51ce773aa6">
+            <TableID>dbo_Typ_Dokument</TableID>
+            <ColumnID>typ_dokumentu</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>
