@@ -1,8 +1,8 @@
-USE master;
+/*USE master;
 ALTER DATABASE HurtowniaDanychRel 
 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 DROP DATABASE HurtowniaDanychRel;
-GO
+GO*/
 
 CREATE database HurtowniaDanychRel
 GO
@@ -106,25 +106,34 @@ CREATE TABLE Postepowanie (
 	ID_data_Zdarzenia INT FOREIGN KEY REFERENCES _Data(ID_data) NOT NULL,
 	ID_zdarzenie INT FOREIGN KEY REFERENCES Zdarzenie(ID_zdarzenie) NOT NULL, -- should all of these just reference SKs since they're numerical?? or should they not be numerical at all? 
 	ID_decyzja INT FOREIGN KEY REFERENCES Decyzja(ID_decyzja) NOT NULL,
-	--PRIMARY KEY (ID_dataRozpoczecia_Postepowania,ID_dataZakonczenia_Postepowania,ID_dataRozpoczecia_Polisy,ID_dataZakonczeniaPolisy,ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja),
-	SK_postepowanie INT IDENTITY(1,1) PRIMARY KEY, -- SK (not in diagram but needed here anyway?)
 	ID_polisa INT FOREIGN KEY REFERENCES Polisa(ID_polisa) NOT NULL,
 	ID_postepowanie VARCHAR(20) NOT NULL, --DD (should this be PK in the database?? so that the later tables can reference this??)
 	ilosc_dokumentow INT,
 	ilosc_analitykow INT,
 	czas_trwania INT,
-	wartosc_odszkodowania DECIMAL(10,2)
+	wartosc_odszkodowania DECIMAL(10,2),
+
+	SK_postepowanie INT IDENTITY(1,1) PRIMARY KEY, -- SK / PK (not in diagram but needed here anyway?)
+
+	UNIQUE(ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Postepowania, ID_dataRozpoczecia_Polisy, ID_dataZakonczeniaPolisy,
+		ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_postepowanie)
+	--PRIMARY KEY (ID_dataRozpoczecia_Postepowania,ID_dataZakonczenia_Postepowania,ID_dataRozpoczecia_Polisy,ID_dataZakonczeniaPolisy,ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja),
+
 );
 
 -- tabela Analiza Dokumentow
 CREATE TABLE Analiza_Dokumentow(
 	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie), -- idk if this is correcct
 	ID_typ INT FOREIGN KEY REFERENCES Typ_Dokument(ID_typ),
-	--PRIMARY KEY(ID_postepowanie, ID_typ),
-	ID_analizaDokumentow INT IDENTITY(1,1) PRIMARY KEY, -- SK instead of DD (that was the point of the DD in the first place anyway)
 	ilosc_dokumentow INT,
 	ilosc_dokumentow_klienta INT,
-	sredni_czas_dostarczenia INT
+	sredni_czas_dostarczenia INT,
+
+	ID_analizaDokumentow INT IDENTITY(1,1) PRIMARY KEY, -- SK instead of DD (that was the point of the DD in the first place anyway)
+
+	UNIQUE(ID_postepowanie, ID_typ)
+	--PRIMARY KEY(ID_postepowanie, ID_typ),
+
 );
 
 -- tabela Zakup Polisy
