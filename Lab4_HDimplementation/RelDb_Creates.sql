@@ -1,8 +1,8 @@
-/*USE master;
+USE master;
 ALTER DATABASE HurtowniaDanychRel 
 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 DROP DATABASE HurtowniaDanychRel;
-GO*/
+GO
 
 CREATE database HurtowniaDanychRel
 GO
@@ -123,7 +123,7 @@ CREATE TABLE Postepowanie (
 
 -- tabela Analiza Dokumentow
 CREATE TABLE Analiza_Dokumentow(
-	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie), -- idk if this is correcct
+	ID_postepowanie VARCHAR(20), -- DD, instead of FK (cause it makes for two connections to main fact table that way)
 	ID_typ INT FOREIGN KEY REFERENCES Typ_Dokument(ID_typ),
 	ilosc_dokumentow INT,
 	ilosc_dokumentow_klienta INT,

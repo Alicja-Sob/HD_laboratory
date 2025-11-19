@@ -101,14 +101,14 @@ GO
 
 -- tabela Postepowanie
 INSERT INTO Analiza_Dokumentow (ID_postepowanie, ID_typ, ilosc_dokumentow, ilosc_dokumentow_klienta,sredni_czas_dostarczenia) VALUES
-    (1,1,1,0,13),
-    (2,2,2,1,12),
-    (3,1,4,4,24),
-    (4,3,3,2,1),
-    (5,4,1,1,2),
-    (6,2,3,1,34),
-    (7,4,2,1,54),
-    (8,5,3,2,14);
+    ('aa34a70dd9f54004a5a6',1,1,0,13),
+    ('aa34a70dd9f54004a5a6',2,2,1,12),
+    ('e870c40d3c1d415d8297',1,4,4,24),
+    ('5370cf8e4f044111837b',3,3,2,1),
+    ('aa34a70dd9f54004a5a6',4,1,1,2),
+    ('352fb2e456b447e19336',2,3,1,34),
+    ('06e0c8473e9d4809bc37',4,2,1,54),
+    ('06e0c8473e9d4809bc37',5,3,2,14);
 
 GO
 
