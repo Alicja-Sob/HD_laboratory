@@ -2,8 +2,8 @@
 
 ## Do realizacji
 
-- [ ] Dodac po 2/3 rzedy danych do relacyjnej BD (zeby sprawdzic czy kostka sie przetwarza) (np. 3 dla faktu, po jednym dla wymiarow)
-- [ ] Implementacja Hurtowni (jak baza na lab2) (creates)
+- [x] Dodac po 2/3 rzedy danych do relacyjnej BD (zeby sprawdzic czy kostka sie przetwarza) (np. 3 dla faktu, po jednym dla wymiarow)
+- [x] Implementacja Hurtowni (jak baza na lab2) (creates)
 - [ ] Projekt visual studio dla hurtowni na podstawie ksiegarni
 - [ ] 2 widoki (data tools) (np. filtrowanie danych - przeklikanie sumy sprzedazy wg. klienta)
 
@@ -23,4 +23,5 @@
   * Czy sa wszystkie wymiary
   * Definicja KPI (z lab1 ?)
   * Kosta musi sie przetworzyc bezblednie na zajeciach
+
 * 2 Widoki robione na zajeciach (nie zapisane)
