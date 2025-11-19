@@ -118,7 +118,7 @@ CREATE TABLE Postepowanie (
 
 -- tabela Analiza Dokumentow
 CREATE TABLE Analiza_Dokumentow(
-	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie), --FIX ME: how to reference this???
+	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie), -- idk if this is correcct
 	ID_typ INT FOREIGN KEY REFERENCES Typ_Dokument(ID_typ),
 	--PRIMARY KEY(ID_postepowanie, ID_typ),
 	ID_analizaDokumentow INT IDENTITY(1,1) PRIMARY KEY, -- SK instead of DD (that was the point of the DD in the first place anyway)
