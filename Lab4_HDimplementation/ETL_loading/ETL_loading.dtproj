@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">LPTP_AS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZs8CdGk1m06xiySmC3qrlAAAAAACAAAAAAAQZgAAAAEAACAAAADP/i9VqfFzCYAIVgVvD+7EhBHkzPGxhWAnvGInSrn5dQAAAAAOgAAAAAIAACAAAADoMgzy8rYPSFN+549lSHK4stZu9ie8ASntLGdikcekkJAAAADl400WZ/Dz1e4yjCIUpitnonP1zUOFq1P+8NwUcFiFvQL+4Qtc+OiaXRvJUqwWB7fHXvpdHSHrwV3VJB3pylEMM7p0miALNgcynw+5AsGXU3DLAwknU2wE1K+sbeh/D8Br7dAZ4A5fiMqEfjPYGgHxyuBIIHQ9XlO9xcmVhhOpbLkOHNDm7Z0vpVjwwkIw5yRAAAAACkRaSV3bokezhOnV3TMgY+pOS6duG01LjKQUiE7m0LvkuiFItofc95fq9GH5umvohl7YIKBzZ0bzSBnOv8mSyQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZs8CdGk1m06xiySmC3qrlAAAAAACAAAAAAAQZgAAAAEAACAAAAC0Ml40cKZ9Khtn/Erwuj33H4YUBxB28l8nSJmYKEYPTwAAAAAOgAAAAAIAACAAAACPefhjqjT8cBLpoxIO/u0JJMcJdrrtqbWSNWFg4T0mW5AAAADDjqzdIUB1bVzS1BCkKGilS1VyivWUvkQh3BbprqpfQQjc0Rt5bHMn7z/v/ZZZy4GEPa/3mCswDaVzlpfryDAli9n1Awq6vZ9tbvvbiz6zjw8X2+UZsxg0JnzkHYnyrXn7eBrfhW/LOkk0V7d/BuStOb5fIDctUtdw/etdmAT8HBiY9I3dPLv9Y0ctKKDrquVAAAAAcGepfqOk1hqNkNMKQBK1ephyTrfA9jjGhZS5x074LKhDDTdzxR1wf558AbMSr0qZ3gm4mRWTPiSyGSfIMrLKxQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -44,10 +44,10 @@
                 <SSIS:Property SSIS:Name="Name">staticData</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">10</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{DFC65D8F-A6D6-41C6-8AB9-FD92477E1FF2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{0EA31F12-1BB2-4C54-B2A1-62657B7FCE81}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -259,6 +259,36 @@
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">C:\Users\sobal\PycharmProjects\generating_inserts\ETL\static_DATA.sql</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.static_DECYZJA.sql.ConnectByProxy">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">false</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CM.static_DECYZJA.sql.ConnectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">C:\Users\sobal\PycharmProjects\generating_inserts\ETL\static_DECYZJA.sql</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
