@@ -4,6 +4,9 @@ GO
 /* is DW table not having a unique constraint on this create issues?
 prob the ability to double the entries but we're supposed to add these only once anyway?
 so does it even matter like that? */
+DELETE FROM dbo.Typ_Dokument;
+DBCC CHECKIDENT ('dbo.Typ_Dokument', RESEED, 0);
+GO
 
 INSERT INTO [dbo].[Typ_Dokument]
 SELECT t FROM 

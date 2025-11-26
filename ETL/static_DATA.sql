@@ -1,6 +1,10 @@
 USE HurtowniaDanychRel
 GO
 
+DELETE FROM dbo._Data;
+DBCC CHECKIDENT ('dbo._Data', RESEED, 0);
+GO
+
 -- DECLARING START AND END DATES
 
 DECLARE @EarliestDate date;	-- for dates of birth etc
@@ -22,9 +26,9 @@ WHILE @DateInProcess <= @EndDateT2
 	BEGIN
 		INSERT INTO [dbo].[_Data] ( [Dzien], [Miesiac], [Rok])
 		VALUES (
-			CAST (Year(@DateInProcess) as INT),
+			CAST (Day(@DateInProcess) as INT),
 			CAST (Month(@DateInProcess) as INT),
-			CAST (DatePart(dw, @DateInProcess) as INT)
+			CAST (Year(@DateInProcess) as INT)
 		);
 		SET @DateInProcess = DateAdd(d, 1, @DateInProcess);
 	END
