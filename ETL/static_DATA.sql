@@ -7,7 +7,7 @@ GO
 
 -- DECLARING START AND END DATES
 
-DECLARE @EarliestDate date;	-- for dates of birth etc
+DECLARE @EarliestDate date;	-- TODO: check what the earliest references date actually is
 
 DECLARE @StartDateT1 date;
 DECLARE @EndDateT1 date;
@@ -24,11 +24,13 @@ DECLARE @DateInProcess date = @EarliestDate
 -- loop is for both snapshots at once, idk if that's how it's supposed to be for the lab
 WHILE @DateInProcess <= @EndDateT2	
 	BEGIN
-		INSERT INTO [dbo].[_Data] ( [Dzien], [Miesiac], [Rok])
+		INSERT INTO [dbo].[_Data] ( [_Data_full], [Dzien], [Miesiac], [Miesiac_numer], [Rok])
 		VALUES (
-			CAST (Day(@DateInProcess) as INT),
+			@DateInProcess,
+			CAST (Day(@DateInProcess) as varchar(2)),
 			CAST (Month(@DateInProcess) as INT),
-			CAST (Year(@DateInProcess) as INT)
+			CAST (DATENAME(Month, @DateInProcess) as varchar(2)),
+			CAST (Year(@DateInProcess) as varchar(4))
 		);
 		SET @DateInProcess = DateAdd(d, 1, @DateInProcess);
 	END
