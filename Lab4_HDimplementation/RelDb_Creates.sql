@@ -1,11 +1,11 @@
-USE master;
+/*USE master;
 ALTER DATABASE HurtowniaDanychRel 
 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 DROP DATABASE HurtowniaDanychRel;
 GO
 
 CREATE database HurtowniaDanychRel
-GO
+GO*/
 
 USE HurtowniaDanychRel;  
 GO
@@ -16,32 +16,26 @@ GO
 CREATE TABLE Odszkodowanie (
 	ID_odszkodowanie INT IDENTITY(1,1) PRIMARY KEY,
 	NR_odszkodowania VARCHAR(20) NOT NULL, -- BK
-	rodzaj_odszkodowania VARCHAR(8) CHECK (rodzaj_odszkodowania IN ('Naprawa','Platnosc')) NOT NULL
-);
-
--- tabela Typ Dokumentu
-CREATE TABLE Typ_Dokument (
-	ID_typ INT IDENTITY(1,1) PRIMARY KEY,
-	typ_dokumentu VARCHAR(13) CHECK (typ_dokumentu IN ('Umowa', 'Raport', 'Faktura', 'Notatka', 'Protoko³', 'Zaswiadczenie', 'Zawiadomienie', 'Inne')) NOT NULL
+	rodzaj_odszkodowania VARCHAR(25) CHECK (rodzaj_odszkodowania IN ('Naprawa','Platnosc','Naprawa i Platnosc','Inne','Nie przyznane')) NOT NULL
 );
 
 -- tabela Dokument
-CREATE TABLE Dokument (
-	ID_dokument INT IDENTITY(1,1) PRIMARY KEY,
-	ID_typ INT FOREIGN KEY REFERENCES Typ_Dokument(ID_typ),
-	Nazwa VARCHAR(50) NOT NULL,
+CREATE TABLE Dokumentacja (
+	ID_dokumentacja INT IDENTITY(1,1) PRIMARY KEY,
 	Autor VARCHAR(50) NOT NULL,
-	Data_dostarczenia DATE NOT NULL,
-	Opoznienie_dostarczenia VARCHAR(16) CHECK (Opoznienie_dostarczenia IN ('ponizej tygodnia', 'tydzien', '2 tygodnie', '3 tygodnie', 'miesiac', 'powyzej miesiaca')),
-	rozszerzenie VARCHAR(5) CHECK (rozszerzenie IN ('.pdf', '.docx', '.xlsx', '.txt', '.pptx', '.csv'))
+	ilosc_dokumentow VARCHAR(10) CHECK (ilosc_dokumentow IN ('1-5', '5-10', '15-20', '25-30', 'powy¿ej 30'))  NOT NULL,
+	srednie_opoznienie VARCHAR(25) CHECK (srednie_opoznienie IN ('ponizej tygodnia', 'tydzien - 2 tygodnie','2 tygodnie - 3 tygodnie', '3 tygodnie - miesiac', 'powyzej miesiaca'))  NOT NULL,
+	glowny_typ_dokumentow VARCHAR(13) CHECK (glowny_typ_dokumentow IN ('Umowa', 'Raport', 'Faktura', 'Notatka', 'Protoko³', 'Zaswiadczenie', 'Zawiadomienie', 'Inne')) NOT NULL
 );
 
 -- tabela Data
 CREATE TABLE _Data (
 	ID_data INT IDENTITY(1,1) PRIMARY KEY,
-	Dzien INT CHECK (Dzien BETWEEN 1 AND 31) NOT NULL,
-	Miesiac INT CHECK (Miesiac BETWEEN 1 AND 12) NOT NULL,
-	Rok INT NOT NULL
+	_Data_full DATE NOT NULL,
+	Dzien VARCHAR(2) CHECK (CAST(Dzien AS INT) BETWEEN 1 AND 31) NOT NULL,
+	Miesiac VARCHAR(2) CHECK (CAST(Miesiac AS INT) BETWEEN 1 AND 12) NOT NULL,
+	Miesiac_numer INT CHECK (Miesiac_numer BETWEEN 1 AND 12) NOT NULL,
+	Rok VARCHAR(4) NOT NULL
 );
 
 -- tabela Zdarzenie
@@ -63,17 +57,6 @@ CREATE TABLE Polisa (
 CREATE TABLE Decyzja (
 	ID_decyzja INT IDENTITY(1,1) PRIMARY KEY,
 	czy_przyznane BIT NOT NULL -- boolean doesnt work in this?? so the closest is bit ig
-);
-
--- tabela Analityk
-CREATE TABLE Analityk (
-	ID_analityk INT IDENTITY(1,1) PRIMARY KEY,
-	ID_pracownika VARCHAR(20) NOT NULL, --BK
-	Pelne_ImieNazwisko VARCHAR(255) NOT NULL, --idk if this is way too much or not enough 
-	Data_zakonczenia DATE,
-	Data_zatrudnienia DATE NOT NULL,
-	Rola VARCHAR(100) NOT NULL,
-	Dzial VARCHAR(100) NOT NULL
 );
 
 -- tabela Agent
@@ -104,37 +87,22 @@ CREATE TABLE Postepowanie (
 	ID_dataRozpoczecia_Polisy INT FOREIGN KEY REFERENCES _Data(ID_data) NOT NULL,
 	ID_dataZakonczeniaPolisy INT FOREIGN KEY REFERENCES _Data(ID_data) NOT NULL,
 	ID_data_Zdarzenia INT FOREIGN KEY REFERENCES _Data(ID_data) NOT NULL,
-	ID_zdarzenie INT FOREIGN KEY REFERENCES Zdarzenie(ID_zdarzenie) NOT NULL, -- should all of these just reference SKs since they're numerical?? or should they not be numerical at all? 
+	ID_zdarzenie INT FOREIGN KEY REFERENCES Zdarzenie(ID_zdarzenie) NOT NULL,
 	ID_decyzja INT FOREIGN KEY REFERENCES Decyzja(ID_decyzja) NOT NULL,
 	ID_polisa INT FOREIGN KEY REFERENCES Polisa(ID_polisa) NOT NULL,
-	ID_postepowanie VARCHAR(20) NOT NULL, --DD (should this be PK in the database?? so that the later tables can reference this??)
+	ID_postepowanie VARCHAR(20) PRIMARY KEY, --DD (can a DD even be a PK?)
 	ilosc_dokumentow INT,
 	ilosc_analitykow INT,
 	czas_trwania INT,
 	wartosc_odszkodowania DECIMAL(10,2),
 
-	SK_postepowanie INT IDENTITY(1,1) PRIMARY KEY, -- SK / PK (not in diagram but needed here anyway?)
-
 	UNIQUE(ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Postepowania, ID_dataRozpoczecia_Polisy, ID_dataZakonczeniaPolisy,
 		ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_postepowanie)
-	--PRIMARY KEY (ID_dataRozpoczecia_Postepowania,ID_dataZakonczenia_Postepowania,ID_dataRozpoczecia_Polisy,ID_dataZakonczeniaPolisy,ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja),
-
 );
 
--- tabela Analiza Dokumentow
-CREATE TABLE Analiza_Dokumentow(
-	ID_postepowanie VARCHAR(20), -- DD, instead of FK (cause it makes for two connections to main fact table that way)
-	ID_typ INT FOREIGN KEY REFERENCES Typ_Dokument(ID_typ),
-	ilosc_dokumentow INT,
-	ilosc_dokumentow_klienta INT,
-	sredni_czas_dostarczenia INT,
+GO
 
-	ID_analizaDokumentow INT IDENTITY(1,1) PRIMARY KEY, -- SK instead of DD (that was the point of the DD in the first place anyway)
-
-	UNIQUE(ID_postepowanie, ID_typ)
-	--PRIMARY KEY(ID_postepowanie, ID_typ),
-
-);
+-- ----- ----- ----- TABELE POSREDNICZACE ----- ----- ----- --
 
 -- tabela Zakup Polisy
 CREATE TABLE Zakup_Polisy (
@@ -144,35 +112,11 @@ CREATE TABLE Zakup_Polisy (
 	PRIMARY KEY(ID_agent, ID_klient, ID_polisa)
 );
 
-GO
--- ----- ----- ----- TABELE POSREDNICZACE ----- ----- ----- --
-
--- tabela Rozliczenie Odszkodowanie
-CREATE TABLE Rozliczenie_odszkodowania (
-	ID_odszkodowanie INT FOREIGN KEY REFERENCES Odszkodowanie(ID_odszkodowanie),
-	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie),
-	PRIMARY KEY(ID_odszkodowanie, ID_postepowanie)
-);
-
--- tabela Kompilacja Analizy
-CREATE TABLE Kompilacja_analizy (
-	ID_analizaDokumentow INT FOREIGN KEY REFERENCES Analiza_Dokumentow(ID_analizaDokumentow), -- should this be referenced?? or smth else
-	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie),
-	PRIMARY KEY(ID_analizaDokumentow, ID_postepowanie)
-);
-
 -- tabela Zebranie Dokumentu
-CREATE TABLE Zebranie_Dokumentu  (
-	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie),
-	ID_dokument INT FOREIGN KEY REFERENCES Dokument(ID_dokument),-- Idk if this is correct or if this should be to a buisness key somehow? but it wuld have to be a composite foreign key
-	PRIMARY KEY(ID_postepowanie, ID_dokument)
-);
-
--- tabela Przypisanie Pracownika
-CREATE TABLE Przypisanie_pracownika (
-	ID_postepowanie INT FOREIGN KEY REFERENCES Postepowanie(SK_postepowanie),
-	ID_analityk INT FOREIGN KEY REFERENCES Analityk(ID_analityk), -- this is to the buissnes key, so it was also wrong in the project i think??
-	PRIMARY KEY(ID_postepowanie, ID_analityk)
+CREATE TABLE Kompilacja_Dokumentacji  (
+	ID_postepowanie VARCHAR(20) FOREIGN KEY REFERENCES Postepowanie(ID_postepowanie),
+	ID_dokumentacja INT FOREIGN KEY REFERENCES Dokumentacja(ID_dokumentacja),
+	PRIMARY KEY(ID_postepowanie, ID_dokumentacja)
 );
 
 GO

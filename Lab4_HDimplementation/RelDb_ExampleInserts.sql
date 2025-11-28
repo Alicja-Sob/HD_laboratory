@@ -6,33 +6,25 @@ GO
 INSERT INTO Odszkodowanie (NR_odszkodowania, rodzaj_odszkodowania) VALUES
     ('31c83cbb982248a39679', 'Naprawa'),
     ('5d8dc930972749e59c24', 'Platnosc'),
-    ('95dc25dad50c404e9c57', 'Naprawa'),
-    ('25b70c6cf37143b6ad40', 'Platnosc'),
+    ('95dc25dad50c404e9c57', 'Naprawa i Platnosc'),
+    ('25b70c6cf37143b6ad40', 'Inne'),
     ('4ee27d80ddd64fa894b5', 'Naprawa');
 
--- tabela Typ Dokumentu
-INSERT INTO Typ_dokument (typ_dokumentu) VALUES
-    ('Umowa'),
-    ('Faktura'),
-    ('Raport'),
-    ('Protoko³'),
-    ('Inne');
-
 -- tabela Dokument
-INSERT INTO Dokument (ID_typ, Nazwa, Autor, Data_dostarczenia, Opoznienie_dostarczenia, rozszerzenie) VALUES
-    (1,'umowa1308pl', 'Norris', '2014-02-03', 'tydzien', '.docx'),
-    (2,'Faktura1234567', 'Odonnell', '2015-05-15', '3 tygodnie', '.pdf'),
-    (2,'RachunekWash', 'Washington', '2019-02-23', '2 tygodnie', '.docx'),
-    (4,'ProtPracy', 'Burns', '2009-01-31', 'miesiac', '.pdf'),
-    (5,'ListaUszkodzen', 'Hopkins', '2016-07-17', '2 tygodnie', '.csv');
+INSERT INTO Dokumentacja (Autor, ilosc_dokumentow, srednie_opoznienie, glowny_typ_dokumentow) VALUES
+    ('Norris', '15-20', 'ponizej tygodnia', 'Zaswiadczenie'),
+    ('Odonnell', '5-10', 'ponizej tygodnia', 'Faktura'),
+    ('Washington', 'powy¿ej 30', '2 tygodnie - 3 tygodnie', 'Faktura'),
+    ('Burns', '1-5', '3 tygodnie - miesiac', 'Faktura'),
+    ('Hopkins', '1-5', 'powyzej miesiaca', 'Protoko³');
 
 -- tabela Data
-INSERT INTO _Data (Dzien, Miesiac, Rok) VALUES
+/*INSERT INTO _Data (Dzien, Miesiac, Rok) VALUES
     (31,12,2015),
     (15,1,2019),
     (2,8,2005),
     (17,6,2014),
-    (6,2,2009);
+    (6,2,2009); */
 
 -- tabela Zdarzenie
 INSERT INTO Zdarzenie (NR_zdarzenia, Lokalizacja, Rodzaj) VALUES
@@ -51,20 +43,13 @@ INSERT INTO Polisa (NR_polisy, Kategoria) VALUES
     ('9767873a245f44809e12','majatkowe');
 
 -- tabela Decyzja
-INSERT INTO Decyzja (czy_przyznane) VALUES
+/*INSERT INTO Decyzja (czy_przyznane) VALUES
     (1),
     (1),
     (0),
     (0),
     (1);
-
--- tabela Analityk
-INSERT INTO Analityk (ID_pracownika, Pelne_ImieNazwisko, Data_zakonczenia, Data_zatrudnienia, Rola, Dzial) VALUES
-    ('720baa29fa0345088d57','Michael Robes',NULL,'2013-08-11','mlodszy analityk danych','analiza i bi'),
-    ('8257270a125e47a68370','Sara Cunningham','2010-03-31','2005-01-15','starszy analityk danych','IT'),
-    ('e99cc35ec08e458e9a55','Carlos Nicole Young','2015-02-20','2005-11-19','analityk biznesowy','ryzyko'),
-    ('4c3a08e2f5d749c3ba54','Kenneth Allen',NULL,'2010-05-28','analityk procesow','operacje'),
-    ('a0cdbbbd535340d3a88c','Chase Charles',NULL,'2005-10-04','analityk biznesowy','finanse');
+*/
 
 -- tabela Agent
 INSERT INTO Agent (ID_pracownika, Pelne_ImieNazwisko, Data_zakonczenia, Data_zatrudnienia, Placowka) VALUES
@@ -82,7 +67,6 @@ INSERT INTO Klient (PESEL, Pelne_ImieNazwisko) VALUES
     ('21320565318','Mckeanziegh Smith'),
     ('09222796148','Jeffrey Joffrey Robbinson');
 
-GO
 
 -- ----- ----- ----- TABELE FAKTOW ----- ----- ----- --
 
@@ -97,20 +81,7 @@ INSERT INTO Postepowanie (ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Po
     (5,4,3,2,3,2,2,2,'aa34a70dd9f54004a5a6',1,5,123,123.45),
     (5,1,3,1,3,5,1,3,'352fb2e456b447e19336',4,5,321,100.40);
 
-GO
-
--- tabela Postepowanie
-INSERT INTO Analiza_Dokumentow (ID_postepowanie, ID_typ, ilosc_dokumentow, ilosc_dokumentow_klienta,sredni_czas_dostarczenia) VALUES
-    ('aa34a70dd9f54004a5a6',1,1,0,13),
-    ('aa34a70dd9f54004a5a6',2,2,1,12),
-    ('e870c40d3c1d415d8297',1,4,4,24),
-    ('5370cf8e4f044111837b',3,3,2,1),
-    ('aa34a70dd9f54004a5a6',4,1,1,2),
-    ('352fb2e456b447e19336',2,3,1,34),
-    ('06e0c8473e9d4809bc37',4,2,1,54),
-    ('06e0c8473e9d4809bc37',5,3,2,14);
-
-GO
+-- ----- ----- ----- TABELE POSREDNICZACE ----- ----- ----- --
 
 -- tabela Zakup Polisy
 INSERT INTO Zakup_Polisy (ID_agent, ID_klient, ID_polisa) VALUES
@@ -123,46 +94,12 @@ INSERT INTO Zakup_Polisy (ID_agent, ID_klient, ID_polisa) VALUES
     (4,2,5),
     (5,1,4);
 
-GO
--- ----- ----- ----- TABELE POSREDNICZACE ----- ----- ----- --
-
--- tabela Rozliczenie Odszkodowanie
-INSERT INTO Rozliczenie_odszkodowania (ID_odszkodowanie, ID_postepowanie) VALUES
-    (1,1),
-    (2,2),
-    (3,3),
-    (4,4),
-    (5,5),
-    (1,5),
-    (2,4);
-
--- tabela Kompilacja Analizy
-INSERT INTO Kompilacja_analizy (ID_analizaDokumentow, ID_postepowanie) VALUES
-    (1,1),
-    (2,2),
-    (3,3),
-    (4,4),
-    (5,5),
-    (1,5),
-    (2,4);
-
 -- tabela Zebranie Dokumentu
-INSERT INTO Zebranie_Dokumentu (ID_postepowanie, ID_dokument) VALUES
-    (1,1),
-    (2,2),
-    (3,3),
-    (4,4),
-    (5,5),
-    (1,5),
-    (2,4);
-
--- tabela Przypisanie Pracownika
-INSERT INTO Przypisanie_pracownika (ID_postepowanie, ID_analityk) VALUES
-    (1,1),
-    (2,2),
-    (3,3),
-    (4,4),
-    (5,5),
-    (1,5),
-    (2,4);
-
+INSERT INTO Kompilacja_Dokumentacji (ID_postepowanie, ID_dokumentacja) VALUES
+    ('06e0c8473e9d4809bc37',1),
+    ('03fdb30fbb2e4d968c76',2),
+    ('fa38a57a9ba24838a88f',3),
+    ('06e0c8473e9d4809bc37',4),
+    ('352fb2e456b447e19336',5),
+    ('03fdb30fbb2e4d968c76',5),
+    ('03fdb30fbb2e4d968c76',4);
