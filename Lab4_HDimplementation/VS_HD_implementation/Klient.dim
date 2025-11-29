@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="7e852d1b-00b8-4495-8082-5e2f963ca412" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="dd6507bf-85b0-46b2-9c83-25d3acca85c6" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Klient</ID>
   <Name>Klient</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1547" scrolltop="-5811" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="6922" y="13568" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1928" scrolltop="-5768" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7684" y="13483" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01ee00009001b0300100065461686f6d61" />
             </font>
@@ -47,11 +47,11 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-      <Value>-1547</Value>
+      <Value>-1928</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-      <Value>-5811</Value>
+      <Value>-5768</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
@@ -68,35 +68,35 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="13845a53-d750-4400-a32d-9feb23eeedd7">
-    <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="d8023dcb-f107-48bf-9448-443770527b60">
+    <DataSourceViewID>HurtowniaDanych_view</DataSourceViewID>
   </Source>
-  <ErrorConfiguration dwd:design-time-name="780bb95e-315c-465e-9ffa-04692da9d017">
+  <ErrorConfiguration dwd:design-time-name="b694d982-52ed-4865-87b5-fc871ae448ff">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="3c33eabe-c754-4663-8ab6-29710b31bf60">
+    <Attribute dwd:design-time-name="aabd59a9-97b9-4fe0-b46e-7c5ba839ad04">
       <ID>ID Klient</ID>
       <Name>ID Klient</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="a9c4ebbd-bd0f-4900-acfa-aa00bbad0925">
+        <KeyColumn dwd:design-time-name="3fadcb5e-5f5a-4744-81aa-d28752447e4b">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="221496b2-dde6-4987-8e8e-4c7929b0a075">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="48d87bc6-289c-4ad1-bb95-640d24ab51ef">
             <TableID>dbo_Klient</TableID>
             <ColumnID>ID_klient</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="48ef559f-b0c6-4ad1-804e-05b90eaa1c46">
+        <AttributeRelationship dwd:design-time-name="da84e481-2ba9-42b6-8961-e9bcc8593129">
           <AttributeID>PESEL</AttributeID>
           <Name>PESEL</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="d0b13680-85bc-4cd3-9e19-e5dc0e4b8c9b">
+        <AttributeRelationship dwd:design-time-name="092fec2c-a157-4dad-a1b5-130a8fb30d8f">
           <AttributeID>Pelne Imie Nazwisko</AttributeID>
           <Name>Pelne Imie Nazwisko</Name>
         </AttributeRelationship>
@@ -105,14 +105,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="750c2831-de76-4418-847e-ea2ae152471d">
+    <Attribute dwd:design-time-name="c9dac049-49f5-417d-a6b8-bda7d5b4284d">
       <ID>PESEL</ID>
       <Name>PESEL</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="a67cc1f9-e195-480f-9fe8-6da6843431d8">
+        <KeyColumn dwd:design-time-name="263268e9-0e21-48e8-bf21-8dec2164802b">
           <DataType>WChar</DataType>
           <DataSize>11</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="d6a6687d-e7b8-404a-b961-179a1b09f399">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="76760e96-b08e-4200-a831-18758084684a">
             <TableID>dbo_Klient</TableID>
             <ColumnID>PESEL</ColumnID>
           </Source>
@@ -121,14 +121,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="d5c2a7fa-776b-4405-ae34-3dbeae56a277">
+    <Attribute dwd:design-time-name="ec7c1db3-50c0-454f-87eb-f9ef71c2d1ba">
       <ID>Pelne Imie Nazwisko</ID>
       <Name>Pelne Imie Nazwisko</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="925bfc42-8296-416f-ab39-7a0ee0ef3a0a">
+        <KeyColumn dwd:design-time-name="7df8251c-be66-4c0c-bc33-00339e13f62c">
           <DataType>WChar</DataType>
           <DataSize>255</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="ee130fbe-845e-4a19-bf07-b90698916f7a">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="5ef19856-1cdc-4c4f-9bed-49be3f277234">
             <TableID>dbo_Klient</TableID>
             <ColumnID>Pelne_ImieNazwisko</ColumnID>
           </Source>

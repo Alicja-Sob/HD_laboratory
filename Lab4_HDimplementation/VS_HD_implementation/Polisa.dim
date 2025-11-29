@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="7f7373ac-682c-4ed0-9a78-ec228d2c4a52" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="7680c684-ce4e-4463-be65-b0083ac6d3ef" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Polisa</ID>
   <Name>Polisa</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1941" scrolltop="-5811" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="6922" y="13568" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2322" scrolltop="-5768" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7684" y="13483" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01ee00009001b0300100065461686f6d61" />
             </font>
@@ -47,11 +47,11 @@
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-      <Value>-1941</Value>
+      <Value>-2322</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-      <Value>-5811</Value>
+      <Value>-5768</Value>
     </Annotation>
     <Annotation>
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
@@ -68,35 +68,35 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="c95c39ff-f2ab-4779-9e80-9a1d0965255f">
-    <DataSourceViewID>HurtowniaDanychRel_view</DataSourceViewID>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="f3d38d76-4055-4ed9-a821-e4e261e3cee2">
+    <DataSourceViewID>HurtowniaDanych_view</DataSourceViewID>
   </Source>
-  <ErrorConfiguration dwd:design-time-name="84808472-4a0c-473b-9113-f2ec8f090b68">
+  <ErrorConfiguration dwd:design-time-name="1e0c229e-c3c8-405a-b139-3b6455a9f694">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="967a1386-0505-4c26-8d8f-f3e749c88ab2">
+    <Attribute dwd:design-time-name="3cd7535a-d7f1-4bc4-b581-a5d065963bd9">
       <ID>ID Polisa</ID>
       <Name>ID Polisa</Name>
       <Usage>Key</Usage>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="84400a17-3d1b-41ef-8098-8cbc3b2c9c6d">
+        <KeyColumn dwd:design-time-name="3b1697b2-f5c1-4380-a1bb-1482f12885bc">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="73b1f3d9-06ae-4a3d-a9c7-19dc90665e36">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="c8a59474-cbe1-43db-824e-01dfb50f6ae9">
             <TableID>dbo_Polisa</TableID>
             <ColumnID>ID_polisa</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="a6f4173a-7696-4c54-9496-b3dd0a437446">
+        <AttributeRelationship dwd:design-time-name="83b52a99-7d3c-416d-aacd-38f7e1e86c7e">
           <AttributeID>NR Polisy</AttributeID>
           <Name>NR Polisy</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="df448ab6-3463-4d6a-8113-3c43e4857542">
+        <AttributeRelationship dwd:design-time-name="18382d66-8ec2-4edd-9978-e3485d50fc73">
           <AttributeID>Kategoria</AttributeID>
           <Name>Kategoria</Name>
         </AttributeRelationship>
@@ -105,14 +105,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="97676e34-f6d5-49ae-94d5-253337ce2cf8">
+    <Attribute dwd:design-time-name="ea457ef7-75f7-45b5-a405-5e1383dc3ba1">
       <ID>NR Polisy</ID>
       <Name>NR Polisy</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="9033f011-22a0-47e1-b015-c4f9c867f24f">
+        <KeyColumn dwd:design-time-name="dd1136b2-2e7b-4615-af0c-8c044c11a46d">
           <DataType>WChar</DataType>
           <DataSize>20</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="1cc508b2-bfde-4945-aefb-c2bb76c082d9">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d12a67d1-2256-49b0-88df-710bdd84dc35">
             <TableID>dbo_Polisa</TableID>
             <ColumnID>NR_polisy</ColumnID>
           </Source>
@@ -121,14 +121,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="7a01a477-ff00-4f3c-bc41-4571db27185a">
+    <Attribute dwd:design-time-name="7f1ad646-9c3f-4860-b2de-8703f18a118c">
       <ID>Kategoria</ID>
       <Name>Kategoria</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="f4a60ad8-f286-4816-be6b-21f63953f51a">
+        <KeyColumn dwd:design-time-name="8e1a76bb-57c7-4251-82d5-f15dd6900fdf">
           <DataType>WChar</DataType>
           <DataSize>13</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="3b56e890-ff1b-4ff1-b9c3-689b56d61d94">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="07f1d955-afd1-48cb-915e-dcaf6792d1e7">
             <TableID>dbo_Polisa</TableID>
             <ColumnID>Kategoria</ColumnID>
           </Source>

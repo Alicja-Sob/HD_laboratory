@@ -20,16 +20,16 @@
   </Cubes>
   <Dimensions>
     <ProjectItem>
-      <Name>Typ Dokument.dim</Name>
-      <FullPath>Typ Dokument.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Data.dim</Name>
-      <FullPath>Data.dim</FullPath>
+      <Name>Dokumentacja.dim</Name>
+      <FullPath>Dokumentacja.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Decyzja.dim</Name>
       <FullPath>Decyzja.dim</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Data.dim</Name>
+      <FullPath>Data.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Polisa.dim</Name>
@@ -40,36 +40,20 @@
       <FullPath>Zdarzenie.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Agent.dim</Name>
-      <FullPath>Agent.dim</FullPath>
+      <Name>Odszkodowanie.dim</Name>
+      <FullPath>Odszkodowanie.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
       <Name>Klient.dim</Name>
       <FullPath>Klient.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Odszkodowanie.dim</Name>
-      <FullPath>Odszkodowanie.dim</FullPath>
+      <Name>Agent.dim</Name>
+      <FullPath>Agent.dim</FullPath>
     </ProjectItem>
     <ProjectItem>
-      <Name>Postepowanie_forBridge.dim</Name>
-      <FullPath>Postepowanie_forBridge.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dokument.dim</Name>
-      <FullPath>Dokument.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Analityk.dim</Name>
-      <FullPath>Analityk.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>AnalizaDokumentow_forBridge.dim</Name>
-      <FullPath>AnalizaDokumentow_forBridge.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>DD_Postepowanie.dim</Name>
-      <FullPath>DD_Postepowanie.dim</FullPath>
+      <Name>Postepowanie_DD.dim</Name>
+      <FullPath>Postepowanie_DD.dim</FullPath>
     </ProjectItem>
   </Dimensions>
   <DataSources>
@@ -90,15 +74,15 @@
       <Options>
         <ConnectionMappings>
           <ConfigurationSetting>
-            <Id>HurtowniaDanychRel_src</Id>
-            <Name>HurtowniaDanychRel_src</Name>
+            <Id>HurtowniaDanych_src</Id>
+            <Name>HurtowniaDanych_src</Name>
             <Value xsi:type="xsd:string">Provider=SQLNCLI11.1;Data Source=localhost;Integrated Security=SSPI;Initial Catalog=HurtowniaDanychRel</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>
           <ConfigurationSetting>
-            <Id>HurtowniaDanychRel_src</Id>
-            <Name>HurtowniaDanychRel_src</Name>
+            <Id>HurtowniaDanych_src</Id>
+            <Name>HurtowniaDanych_src</Name>
             <Value xsi:type="xsd:int">0</Value>
           </ConfigurationSetting>
         </ConnectionSecurityMappings>
