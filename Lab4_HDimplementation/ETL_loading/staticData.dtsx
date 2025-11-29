@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="11/26/2025 7:06:27 PM"
+  DTS:CreationDate="11/29/2025 12:27:32 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="LPTP_AS"
   DTS:CreatorName="Lptp_AS\SbchLcj"
-  DTS:DTSID="{DFF6E097-0B0C-474E-8840-CEEEABB0E4BF}"
+  DTS:DTSID="{2085F74C-02C3-4369-BD38-1794C81A6778}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="17.0.1008.3"
   DTS:LocaleID="1045"
-  DTS:ObjectName="staticData"
+  DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="12"
-  DTS:VersionGUID="{1E8E77F9-4A49-468F-B107-FA5CD65921E5}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{CFFD7577-0192-4BE1-AC1C-F1C1BA89D44A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[localhost.HurtowniaDanychRel]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{3CB8FE05-3CD0-49FC-935F-A968A9BB03FE}"
+      DTS:DTSID="{1A526BCF-4E1D-4164-BD2B-FFB5CAADCE49}"
       DTS:ObjectName="localhost.HurtowniaDanychRel">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=HurtowniaDanychRel;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-staticData-{3CB8FE05-3CD0-49FC-935F-A968A9BB03FE}localhost.HurtowniaDanychRel;" />
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=HurtowniaDanychRel;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package-{1A526BCF-4E1D-4164-BD2B-FFB5CAADCE49}localhost.HurtowniaDanychRel;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[RelDb_ExampleInserts.sql]"
       DTS:CreationName="FILE"
-      DTS:DTSID="{408729F2-785F-4C35-875F-EAB21C659801}"
+      DTS:DTSID="{CC06FBE1-592A-4D74-867C-9EF0FF6C0CEE}"
       DTS:ObjectName="RelDb_ExampleInserts.sql">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -41,7 +41,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[static_DATA.sql]"
       DTS:CreationName="FILE"
-      DTS:DTSID="{2B64433B-F4D7-4A39-936E-8BE4B502A741}"
+      DTS:DTSID="{880030F9-E05B-4829-AB1B-D29C96FE2E18}"
       DTS:ObjectName="static_DATA.sql">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -51,7 +51,7 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[static_DECYZJA.sql]"
       DTS:CreationName="FILE"
-      DTS:DTSID="{C682A818-EC30-45DD-91F5-D8E20EBED899}"
+      DTS:DTSID="{12357A92-FB09-4D1A-A659-5204BC169C93}"
       DTS:ObjectName="static_DECYZJA.sql">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -59,84 +59,84 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[static_TYP-DOKUMENTU.sql]"
+      DTS:refId="Package.ConnectionManagers[static_ODSZKODOWANIE.sql]"
       DTS:CreationName="FILE"
-      DTS:DTSID="{2421F2FD-2C5A-4345-8E0C-46DA2D6090BF}"
-      DTS:ObjectName="static_TYP-DOKUMENTU.sql">
+      DTS:DTSID="{89D54DD1-2364-4A89-9D5C-B0F7A9E9584F}"
+      DTS:ObjectName="static_ODSZKODOWANIE.sql">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="C:\Users\sobal\PycharmProjects\generating_inserts\ETL\static_TYP-DOKUMENTU.sql" />
+          DTS:ConnectionString="C:\Users\sobal\PycharmProjects\generating_inserts\ETL\static_ODSZKODOWANIE.sql" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Decyzja ETL"
+      DTS:refId="Package\DATA loading"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{23285465-B0E4-4731-9850-75A1695CAA5B}"
+      DTS:DTSID="{7C5674C9-5621-44FA-9EE7-0FB2D9CD3AAA}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Decyzja ETL"
+      DTS:ObjectName="DATA loading"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{3CB8FE05-3CD0-49FC-935F-A968A9BB03FE}"
+          SQLTask:Connection="{1A526BCF-4E1D-4164-BD2B-FFB5CAADCE49}"
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="static_DATA.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DECYZJA loading"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9FCCB8BD-CFC2-4764-BC4F-39477F8C8D22}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DECYZJA loading"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1A526BCF-4E1D-4164-BD2B-FFB5CAADCE49}"
           SQLTask:SqlStmtSourceType="FileConnection"
           SQLTask:SqlStatementSource="static_DECYZJA.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Example Inserts for the rest"
+      DTS:refId="Package\EXAMPLE INSERTS loading"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{F9312622-DC42-4104-AF51-3BB772E3F840}"
+      DTS:DTSID="{ADAB9D07-0181-47B4-9868-35C571A9B170}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Example Inserts for the rest"
+      DTS:ObjectName="EXAMPLE INSERTS loading"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{3CB8FE05-3CD0-49FC-935F-A968A9BB03FE}"
+          SQLTask:Connection="{1A526BCF-4E1D-4164-BD2B-FFB5CAADCE49}"
           SQLTask:SqlStmtSourceType="FileConnection"
           SQLTask:SqlStatementSource="RelDb_ExampleInserts.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Typ_dokument ETL"
+      DTS:refId="Package\ODSZKODOWANIE loading"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{4F5045FD-5596-411B-BA1A-431C25E808EC}"
+      DTS:DTSID="{9AF2ECF7-4F89-41DD-98C7-B845B67706B6}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Typ_dokument ETL"
+      DTS:ObjectName="ODSZKODOWANIE loading"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{3CB8FE05-3CD0-49FC-935F-A968A9BB03FE}"
+          SQLTask:Connection="{1A526BCF-4E1D-4164-BD2B-FFB5CAADCE49}"
           SQLTask:SqlStmtSourceType="FileConnection"
-          SQLTask:SqlStatementSource="static_TYP-DOKUMENTU.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\_Data ETL"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Execute SQL Task"
-      DTS:DTSID="{9EAE7B99-8C7F-4F48-ACE9-491614A9F299}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="_Data ETL"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{3CB8FE05-3CD0-49FC-935F-A968A9BB03FE}"
-          SQLTask:SqlStmtSourceType="FileConnection"
-          SQLTask:SqlStatementSource="static_DATA.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="static_ODSZKODOWANIE.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -144,27 +144,27 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{BFB10D58-13B0-4464-9EF6-BF6CB04295DC}"
-      DTS:From="Package\_Data ETL"
+      DTS:DTSID="{3908345C-69E0-4C42-91C3-2EF78767AAC6}"
+      DTS:From="Package\DATA loading"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\Typ_dokument ETL" />
+      DTS:To="Package\DECYZJA loading" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
-      DTS:DTSID="{E3142285-F3AD-4C73-8EA2-EFD8D56BCDE2}"
-      DTS:From="Package\Decyzja ETL"
+      DTS:DTSID="{2F8D0FFF-C6E4-4B75-8CC5-649ACBED3B38}"
+      DTS:From="Package\DECYZJA loading"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
-      DTS:To="Package\Example Inserts for the rest" />
+      DTS:To="Package\ODSZKODOWANIE loading" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
-      DTS:DTSID="{C74B046F-6AB8-461E-9BFC-0980C2584CDA}"
-      DTS:From="Package\Typ_dokument ETL"
+      DTS:DTSID="{73BD7839-1E17-403B-9F19-E768255598C9}"
+      DTS:From="Package\ODSZKODOWANIE loading"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Decyzja ETL" />
+      DTS:To="Package\EXAMPLE INSERTS loading" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -179,57 +179,31 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="127.2,41.6"
-          Id="Package\_Data ETL"
-          TopLeft="142.857143161248,132.294117531098" />
-        <NodeLayout
-          Size="209.6,41.6"
-          Id="Package\Example Inserts for the rest"
-          TopLeft="559.285715476287,269.176470352292" />
-        <NodeLayout
-          Size="169.6,41.6"
-          Id="Package\Typ_dokument ETL"
-          TopLeft="387.142857966983,134.588235176146" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="270.057143161248,154.241176353622">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="117.085714805735,0"
-              Start="0,0"
-              End="109.585714805735,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="109.585714805735,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="141.6,41.6"
+          Id="Package\DATA loading"
+          TopLeft="47.8571429590183,120.823529305858" />
         <NodeLayout
           Size="162.4,41.6"
-          Id="Package\Decyzja ETL"
-          TopLeft="622.142858467236,134.588235176146" />
+          Id="Package\DECYZJA loading"
+          TopLeft="265.714286279922,126.176470477637" />
+        <NodeLayout
+          Size="204,41.6"
+          Id="Package\ODSZKODOWANIE loading"
+          TopLeft="508.571429654044,129.235294004367" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="556.742857966983,155.388235176146">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="189.457142959018,144.299999891747">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="65.4000005002532,0"
+              EndConnector="76.2571433209035,0"
               Start="0,0"
-              End="57.9000005002532,0">
+              End="68.7571433209035,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="57.9000005002532,0" />
+                    End="68.7571433209035,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -240,30 +214,56 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="703.342858467236,176.188235176146">
+          TopLeft="428.114286279922,148.505882241002">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-39.2571429909488,92.9882351761463"
+              EndConnector="80.4571433741219,0"
               Start="0,0"
-              End="-39.2571429909488,85.4882351761463">
+              End="72.9571433741219,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.4941175880731" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,42.4941175880731"
-                    Point2="0,46.4941175880731"
-                    Point3="-4,46.4941175880731" />
+                    End="72.9571433741219,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="204.8,41.6"
+          Id="Package\EXAMPLE INSERTS loading"
+          TopLeft="260.714286269278,298.235293856232" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="610.571429654044,170.835294004367">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-247.457143384766,127.399999851865"
+              Start="0,0"
+              End="-247.457143384766,119.899999851865">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-35.2571429909488,46.4941175880731" />
+                    End="0,59.6999999259325" />
                   <mssgle:CubicBezierSegment
-                    Point1="-35.2571429909488,46.4941175880731"
-                    Point2="-39.2571429909488,46.4941175880731"
-                    Point3="-39.2571429909488,50.4941175880731" />
+                    Point1="0,59.6999999259325"
+                    Point2="0,63.6999999259325"
+                    Point3="-4,63.6999999259325" />
                   <mssgle:LineSegment
-                    End="-39.2571429909488,85.4882351761463" />
+                    End="-243.457143384766,63.6999999259325" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-243.457143384766,63.6999999259325"
+                    Point2="-247.457143384766,63.6999999259325"
+                    Point3="-247.457143384766,67.6999999259325" />
+                  <mssgle:LineSegment
+                    End="-247.457143384766,119.899999851865" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
