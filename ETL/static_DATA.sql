@@ -28,8 +28,8 @@ WHILE @DateInProcess <= @EndDateT2
 		VALUES (
 			@DateInProcess,
 			CAST (Day(@DateInProcess) as varchar(2)),
+			CAST (DATENAME(Month, @DateInProcess) as varchar(9)),
 			CAST (Month(@DateInProcess) as INT),
-			CAST (DATENAME(Month, @DateInProcess) as varchar(2)),
 			CAST (Year(@DateInProcess) as varchar(4))
 		);
 		SET @DateInProcess = DateAdd(d, 1, @DateInProcess);
