@@ -31,11 +31,12 @@ CREATE TABLE Dokumentacja (
 CREATE TABLE _Data (
 	ID_data INT IDENTITY(1,1) PRIMARY KEY,
 	_Data_full DATE NOT NULL,
-	Dzien VARCHAR(2) CHECK (CAST(Dzien AS INT) BETWEEN 1 AND 31) NOT NULL,
-	Miesiac VARCHAR(2) CHECK (CAST(Miesiac AS INT) BETWEEN 1 AND 12) NOT NULL,
+	Dzien VARCHAR(2) NOT NULL,
+	Miesiac VARCHAR(9) NOT NULL,
 	Miesiac_numer INT CHECK (Miesiac_numer BETWEEN 1 AND 12) NOT NULL,
 	Rok VARCHAR(4) NOT NULL
 );
+
 
 -- tabela Zdarzenie
 CREATE TABLE Zdarzenie (

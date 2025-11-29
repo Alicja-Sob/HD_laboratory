@@ -2,29 +2,13 @@ USE HurtowniaDanychRel
 GO
 -- ----- ----- ----- TABELE WYMIAROW ----- ----- ----- --
 
--- tabela Odszkodowanie
-INSERT INTO Odszkodowanie (NR_odszkodowania, rodzaj_odszkodowania) VALUES
-    ('31c83cbb982248a39679', 'Naprawa'),
-    ('5d8dc930972749e59c24', 'Platnosc'),
-    ('95dc25dad50c404e9c57', 'Naprawa i Platnosc'),
-    ('25b70c6cf37143b6ad40', 'Inne'),
-    ('4ee27d80ddd64fa894b5', 'Naprawa');
-
--- tabela Dokument
+-- tabela Dokumentacja
 INSERT INTO Dokumentacja (Autor, ilosc_dokumentow, srednie_opoznienie, glowny_typ_dokumentow) VALUES
     ('Norris', '15-20', 'ponizej tygodnia', 'Zaswiadczenie'),
     ('Odonnell', '5-10', 'ponizej tygodnia', 'Faktura'),
     ('Washington', 'powy¿ej 30', '2 tygodnie - 3 tygodnie', 'Faktura'),
     ('Burns', '1-5', '3 tygodnie - miesiac', 'Faktura'),
     ('Hopkins', '1-5', 'powyzej miesiaca', 'Protoko³');
-
--- tabela Data
-/*INSERT INTO _Data (Dzien, Miesiac, Rok) VALUES
-    (31,12,2015),
-    (15,1,2019),
-    (2,8,2005),
-    (17,6,2014),
-    (6,2,2009); */
 
 -- tabela Zdarzenie
 INSERT INTO Zdarzenie (NR_zdarzenia, Lokalizacja, Rodzaj) VALUES
@@ -41,15 +25,6 @@ INSERT INTO Polisa (NR_polisy, Kategoria) VALUES
     ('d6465bad5abb4dd2b0a3','komunikacyjne'),
     ('00090b8d90ca4868a145','osobowe'),
     ('9767873a245f44809e12','majatkowe');
-
--- tabela Decyzja
-/*INSERT INTO Decyzja (czy_przyznane) VALUES
-    (1),
-    (1),
-    (0),
-    (0),
-    (1);
-*/
 
 -- tabela Agent
 INSERT INTO Agent (ID_pracownika, Pelne_ImieNazwisko, Data_zakonczenia, Data_zatrudnienia, Placowka) VALUES
@@ -74,10 +49,10 @@ INSERT INTO Klient (PESEL, Pelne_ImieNazwisko) VALUES
 INSERT INTO Postepowanie (ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Postepowania, ID_dataRozpoczecia_Polisy, ID_dataZakonczeniaPolisy, ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_odszkodowanie, ID_postepowanie, ilosc_dokumentow, ilosc_analitykow, czas_trwania, wartosc_odszkodowania) VALUES
     (4,1,5,1,4,1,2,1,1,'06e0c8473e9d4809bc37',2,2,1010,5432.21),
     (4,1,3,2,5,2,1,2,1,'5370cf8e4f044111837b',3,5,900,112233.44),
-    (4,2,5,1,4,3,3,3,2,'33369530fbb94f77be2f',5,3,300,234.22),
-    (4,2,3,2,5,4,5,4,3,'fa38a57a9ba24838a88f',5,3,200,12324.23),
-    (3,5,3,1,3,5,4,4,4,'e870c40d3c1d415d8297',3,4,500,112322.44),
-    (3,5,3,4,3,3,3,5,2,'03fdb30fbb2e4d968c76',4,4,666,1112.23),
+    (4,2,5,1,4,3,1,3,2,'33369530fbb94f77be2f',5,3,300,234.22),
+    (4,2,3,2,5,4,2,4,3,'fa38a57a9ba24838a88f',5,3,200,12324.23),
+    (3,5,3,1,3,5,1,4,4,'e870c40d3c1d415d8297',3,4,500,112322.44),
+    (3,5,3,4,3,3,2,5,2,'03fdb30fbb2e4d968c76',4,4,666,1112.23),
     (5,4,3,2,3,2,2,2,4,'aa34a70dd9f54004a5a6',1,5,123,123.45),
     (5,1,3,1,3,5,1,3,3,'352fb2e456b447e19336',4,5,321,100.40);
 
@@ -93,6 +68,7 @@ INSERT INTO Zakup_Polisy (ID_agent, ID_klient, ID_polisa) VALUES
     (4,1,2),
     (4,2,5),
     (5,1,4);
+
 
 -- tabela Zebranie Dokumentu
 INSERT INTO Kompilacja_Dokumentacji (ID_postepowanie, ID_dokumentacja) VALUES
