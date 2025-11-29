@@ -71,15 +71,15 @@ INSERT INTO Klient (PESEL, Pelne_ImieNazwisko) VALUES
 -- ----- ----- ----- TABELE FAKTOW ----- ----- ----- --
 
 -- tabela Analiza Dokumentow
-INSERT INTO Postepowanie (ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Postepowania, ID_dataRozpoczecia_Polisy, ID_dataZakonczeniaPolisy, ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_postepowanie, ilosc_dokumentow, ilosc_analitykow, czas_trwania, wartosc_odszkodowania) VALUES
-    (4,1,5,1,4,1,2,1,'06e0c8473e9d4809bc37',2,2,1010,5432.21),
-    (4,1,3,2,5,2,1,2,'5370cf8e4f044111837b',3,5,900,112233.44),
-    (4,2,5,1,4,3,3,3,'33369530fbb94f77be2f',5,3,300,234.22),
-    (4,2,3,2,5,4,5,4,'fa38a57a9ba24838a88f',5,3,200,12324.23),
-    (3,5,3,1,3,5,4,4,'e870c40d3c1d415d8297',3,4,500,112322.44),
-    (3,5,3,4,3,3,3,5,'03fdb30fbb2e4d968c76',4,4,666,1112.23),
-    (5,4,3,2,3,2,2,2,'aa34a70dd9f54004a5a6',1,5,123,123.45),
-    (5,1,3,1,3,5,1,3,'352fb2e456b447e19336',4,5,321,100.40);
+INSERT INTO Postepowanie (ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Postepowania, ID_dataRozpoczecia_Polisy, ID_dataZakonczeniaPolisy, ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_odszkodowanie, ID_postepowanie, ilosc_dokumentow, ilosc_analitykow, czas_trwania, wartosc_odszkodowania) VALUES
+    (4,1,5,1,4,1,2,1,1,'06e0c8473e9d4809bc37',2,2,1010,5432.21),
+    (4,1,3,2,5,2,1,2,1,'5370cf8e4f044111837b',3,5,900,112233.44),
+    (4,2,5,1,4,3,3,3,2,'33369530fbb94f77be2f',5,3,300,234.22),
+    (4,2,3,2,5,4,5,4,3,'fa38a57a9ba24838a88f',5,3,200,12324.23),
+    (3,5,3,1,3,5,4,4,4,'e870c40d3c1d415d8297',3,4,500,112322.44),
+    (3,5,3,4,3,3,3,5,2,'03fdb30fbb2e4d968c76',4,4,666,1112.23),
+    (5,4,3,2,3,2,2,2,4,'aa34a70dd9f54004a5a6',1,5,123,123.45),
+    (5,1,3,1,3,5,1,3,3,'352fb2e456b447e19336',4,5,321,100.40);
 
 -- ----- ----- ----- TABELE POSREDNICZACE ----- ----- ----- --
 

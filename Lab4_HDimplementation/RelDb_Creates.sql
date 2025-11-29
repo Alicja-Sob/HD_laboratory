@@ -15,7 +15,6 @@ GO
 -- tabela Odszkodowanie
 CREATE TABLE Odszkodowanie (
 	ID_odszkodowanie INT IDENTITY(1,1) PRIMARY KEY,
-	NR_odszkodowania VARCHAR(20) NOT NULL, -- BK
 	rodzaj_odszkodowania VARCHAR(25) CHECK (rodzaj_odszkodowania IN ('Naprawa','Platnosc','Naprawa i Platnosc','Inne','Nie przyznane')) NOT NULL
 );
 
@@ -90,6 +89,7 @@ CREATE TABLE Postepowanie (
 	ID_zdarzenie INT FOREIGN KEY REFERENCES Zdarzenie(ID_zdarzenie) NOT NULL,
 	ID_decyzja INT FOREIGN KEY REFERENCES Decyzja(ID_decyzja) NOT NULL,
 	ID_polisa INT FOREIGN KEY REFERENCES Polisa(ID_polisa) NOT NULL,
+	ID_odszkodowanie INT FOREIGN KEY REFERENCES Odszkodowanie(ID_odszkodowanie) NOT NULL,	-- completely forgot to put this one in the HD project
 	ID_postepowanie VARCHAR(20) PRIMARY KEY, --DD (can a DD even be a PK?)
 	ilosc_dokumentow INT,
 	ilosc_analitykow INT,
@@ -97,7 +97,7 @@ CREATE TABLE Postepowanie (
 	wartosc_odszkodowania DECIMAL(10,2),
 
 	UNIQUE(ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Postepowania, ID_dataRozpoczecia_Polisy, ID_dataZakonczeniaPolisy,
-		ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_postepowanie)
+		ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_odszkodowanie, ID_postepowanie)
 );
 
 GO
