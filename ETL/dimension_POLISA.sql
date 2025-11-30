@@ -14,7 +14,7 @@ SELECT DISTINCT
 	[ID_polisy] AS [NR_polisy],
 	[Kategoria]
 FROM [SystemPrzechowujacyDane].dbo.[Polisa]
-JOIN [SystemPrzechowujacyDane].dbo.[Postepowanie] -- tylko postepowania ktore sa przypisane do jakiegos postepowania
+JOIN [SystemPrzechowujacyDane].dbo.[Postepowanie] -- tylko polisy ktore sa przypisane do jakiegos postepowania
 	ON [SystemPrzechowujacyDane].dbo.[Postepowanie].[Polisa]   = [SystemPrzechowujacyDane].dbo.[Polisa].[ID_polisy]
 GO
 
@@ -24,7 +24,7 @@ MERGE INTO Polisa AS TT
 		AND TT.Kategoria = ST.Kategoria
 		WHEN NOT MATCHED THEN	-- wstawianie NOWYCH polis
 			INSERT VALUES (ST.Nr_polisy, ST.Kategoria)
-		WHEN NOT MATCHED BY SOURCE THEN	-- USUWANIE polis, nie bez pasujacej tabeli faktu
+		WHEN NOT MATCHED BY SOURCE THEN	-- USUWANIE polis, bez pasujacej tabeli faktu
 			DELETE;
 GO	
 
