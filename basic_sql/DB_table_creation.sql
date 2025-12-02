@@ -27,14 +27,14 @@ CREATE TABLE Pracownik (
 	Drugie_imie VARCHAR(100),
 	Nazwisko VARCHAR(100) NOT NULL,
 	Data_zatrudnienia DATE NOT NULL,
-	Data_zakonczenia DATE 
 );
 
 CREATE TABLE Agent (
 	ID_agenta VARCHAR(20) PRIMARY KEY,
 		FOREIGN KEY (ID_agenta) REFERENCES Pracownik(ID_pracownika),	-- zwiazek IS_A
 	Placowka VARCHAR(255) NOT NULL,
-	Specjalnosc VARCHAR(100)
+	Specjalnosc VARCHAR(100),
+	Ostatnia_data_zmiany_placowki DATE	-- for scd2
 );
 
 CREATE TABLE Analityk (
