@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{CFFD7577-0192-4BE1-AC1C-F1C1BA89D44A}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{B9A82EE1-5EBD-439C-BB1E-54D5CA046A12}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -109,11 +109,12 @@
       DTS:refId="Package\EXAMPLE INSERTS loading"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
+      DTS:Disabled="True"
       DTS:DTSID="{ADAB9D07-0181-47B4-9868-35C571A9B170}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="EXAMPLE INSERTS loading"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -157,14 +158,6 @@
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\ODSZKODOWANIE loading" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{73BD7839-1E17-403B-9F19-E768255598C9}"
-      DTS:From="Package\ODSZKODOWANIE loading"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Constraint 2"
-      DTS:To="Package\EXAMPLE INSERTS loading" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -186,6 +179,10 @@
           Size="162.4,41.6"
           Id="Package\DECYZJA loading"
           TopLeft="265.714286279922,126.176470477637" />
+        <NodeLayout
+          Size="204.8,41.6"
+          Id="Package\EXAMPLE INSERTS loading"
+          TopLeft="260.714286269278,298.235293856232" />
         <NodeLayout
           Size="204,41.6"
           Id="Package\ODSZKODOWANIE loading"
@@ -226,44 +223,6 @@
                   Capacity="5">
                   <mssgle:LineSegment
                     End="72.9571433741219,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="204.8,41.6"
-          Id="Package\EXAMPLE INSERTS loading"
-          TopLeft="260.714286269278,298.235293856232" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="610.571429654044,170.835294004367">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-247.457143384766,127.399999851865"
-              Start="0,0"
-              End="-247.457143384766,119.899999851865">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,59.6999999259325" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,59.6999999259325"
-                    Point2="0,63.6999999259325"
-                    Point3="-4,63.6999999259325" />
-                  <mssgle:LineSegment
-                    End="-243.457143384766,63.6999999259325" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-243.457143384766,63.6999999259325"
-                    Point2="-247.457143384766,63.6999999259325"
-                    Point3="-247.457143384766,67.6999999259325" />
-                  <mssgle:LineSegment
-                    End="-247.457143384766,119.899999851865" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
