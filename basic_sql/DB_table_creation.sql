@@ -1,8 +1,8 @@
-USE master;
+/*USE master;
 ALTER DATABASE SystemPrzechowujacyDane 
 SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 DROP DATABASE SystemPrzechowujacyDane;
-GO
+GO*/
 
 CREATE database SystemPrzechowujacyDane
 GO
@@ -26,7 +26,8 @@ CREATE TABLE Pracownik (
 	Imie VARCHAR(100) NOT NULL,
 	Drugie_imie VARCHAR(100),
 	Nazwisko VARCHAR(100) NOT NULL,
-	Data_zatrudnienia DATE NOT NULL
+	Data_zatrudnienia DATE NOT NULL,
+	Data_zakonczenia DATE 
 );
 
 CREATE TABLE Agent (
