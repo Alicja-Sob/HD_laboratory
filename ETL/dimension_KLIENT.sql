@@ -24,7 +24,7 @@ MERGE INTO Klient AS TT
 		AND TT.Pelne_ImieNazwisko = ST.Pelne_ImieNazwisko
 		WHEN NOT MATCHED THEN	-- wstawianie NOWYCH klientow
 			INSERT VALUES (ST.PESEL, ST.Pelne_ImieNazwisko)
-		WHEN NOT MATCHED BY SOURCE THEN -- USUWANIE klientow bez pasujacych polis
+		WHEN NOT MATCHED BY SOURCE THEN -- USUWANIE klientow bez pasujacych polis (not in the created view)
 			DELETE;
 /*		WHEN MATCHED AND (ST.Pelne_ImieNazwisko <> TT.Pelne_ImieNazwisko) THEN 
 			UPDATE

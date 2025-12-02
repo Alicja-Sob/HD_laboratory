@@ -11,11 +11,11 @@ IF (OBJECT_ID('dbo.DocTemp') is NOT NULL) DROP TABLE dbo.DocTemp;
 CREATE TABLE dbo.DocTemp(
 	A_lp varchar(10),
 	B_nazwa varchar(255),	-- idk if those sizez are correct
-	C_postepowanieID varchar(15),
+	C_postepowanieID varchar(20),
 	D_typDok varchar(255),
-	E_autor varchar(255),	-- MAKE THE GENERATOR MAKE IMIE-DRUGIEIMIE-NAZWISKO INSTEAD OF JUST NAZWISKO FOR EASIER MATCHING ?
+	E_autor varchar(255),
 	F_dataDostarczenia date,
-	G_info varchar(1000)	 -- no idea how long should this actually be (should prob set this in the generator)
+	G_info varchar(100)	 -- no idea how long should this actually be (should prob set this in the generator)
 	);
 GO
 
@@ -44,7 +44,7 @@ SELECT
 		WHEN COUNT(*) BETWEEN 21 AND 25 THEN '20-25'
 		WHEN COUNT(*) BETWEEN 26 AND 30 THEN '25-30'
 		WHEN COUNT(*) > 30 THEN 'powyzej 30'
-		ELSE 'ERROR!'
+		--ELSE 'ERROR!'
 	END AS [ilosc_dokumentow],
 	-- srednie opoznienie - avg (all of the czas_dostarczenia - czas rozpoczecia postepowania) 
 	CASE 
@@ -53,40 +53,49 @@ SELECT
 		WHEN AVG(DATEDIFF(DAY, Src.[Data_rozpoczecia], Temp.[F_dataDostarczenia])) BETWEEN 15 AND 21 THEN '2 tygodnie - 3 tygodnie'
 		WHEN AVG(DATEDIFF(DAY, Src.[Data_rozpoczecia], Temp.[F_dataDostarczenia])) BETWEEN 22 AND 30 THEN '3 tygodnie - miesiac'
 		WHEN AVG(DATEDIFF(DAY, Src.[Data_rozpoczecia], Temp.[F_dataDostarczenia])) > 30 THEN 'powyzej miesiaca'
-		ELSE 'ERROR!'
+	--	ELSE 'ERROR!'
 	END AS [srednie_opoznienie],
 	-- glowny typ (dla odpowienich dokumentow wybierz typ ktory najczescie (>=50%) sie powtarza)
-	(
-		SELECT TOP 1 [D_typDok]
-			FROM dbo.DocTemp AS DTtemp
-			WHERE DTtemp.[E_autor] = Temp.[E_autor] AND DTtemp.[C_postepowanieID] = Temp.[C_postepowanieID]
-		GROUP BY [D_typDok]
-        HAVING COUNT(*) * 1.0 / COUNT(*) OVER (PARTITION BY DTtemp.[E_autor], DTtemp.[C_postepowanieID]) >= 0.5
-		ORDER BY COUNT(*) DESC
-	) AS [glowny_typ_dokumentow]
+(
+    SELECT TOP 1 D_typDok
+    FROM (
+        SELECT 
+            DTtemp.D_typDok,
+            COUNT(*) AS Cnt
+        FROM dbo.DocTemp DTtemp
+        WHERE DTtemp.E_autor = Temp.E_autor
+          AND DTtemp.C_postepowanieID = Temp.C_postepowanieID
+        GROUP BY DTtemp.D_typDok
+    ) AS X
+    ORDER BY X.Cnt DESC
+) AS [glowny_typ_dokumentow]
 FROM dbo.[DocTemp] AS Temp
 JOIN [SystemPrzechowujacyDane].dbo.[Postepowanie] AS Src	-- tylko dokumenty przypisane do istniejacego postepowania
 	ON Src.[ID_postepowania] = Temp.[C_postepowanieID]
 GROUP BY
 	Temp.E_autor, 
-	Src.ID_postepowania;
+	Src.ID_postepowania,
+	Temp.C_postepowanieID;
 GO
+
+SELECT COUNT(*) FROM vDataForDokumentacja;
+SELECT TOP 10 * FROM vDataForDokumentacja;
 
 
 MERGE INTO Dokumentacja AS TT
 	USING vDataForDokumentacja AS ST
-		ON TT.Autor = ST.Autor
-		AND TT.ilosc_dokumentow = ST.ilosc_dokumentow
-		AND TT.srednie_opoznienie = ST.srednie_opoznienie
-		AND TT.glowny_typ_dokumentow = ST.glowny_typ_dokumentow
+		ON TT.Autor LIKE '%' + ST.Autor + '%'
+		--AND TT.ilosc_dokumentow = ST.ilosc_dokumentow
+		--AND TT.srednie_opoznienie = ST.srednie_opoznienie
+		--AND TT.glowny_typ_dokumentow = ST.glowny_typ_dokumentow
 		WHEN NOT MATCHED THEN	-- wstawianie NOWYCH dokumentacji
 			INSERT VALUES (ST.Autor, ST.ilosc_dokumentow, ST.srednie_opoznienie ,ST.glowny_typ_dokumentow)
 		WHEN NOT MATCHED BY SOURCE THEN	-- USUWANIE dokumentacji bez pasujacej tablei faktu?
 			DELETE;
 GO
 
--- istniejace wpisy pozostaja bez zmian (nie ma WHEN MATCHED)
--- REALISTICALLY SHOULD PROB ADD MATCHED, FOR NEW DOCUMENTS ADDED ?!! todo ig
+SELECT COUNT(*) FROM Dokumentacja;
+
 
 DROP TABLE dbo.DocTemp;
 DROP VIEW vDataForDokumentacja;
