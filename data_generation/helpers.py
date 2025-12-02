@@ -1,16 +1,23 @@
 import csv
 import random
 import uuid
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 from faker import Faker     # for generating fake data
 fake = Faker('pl_PL')  # fake data as if from Poland
 
 # ---------- HELPER METHODS ----------
 def generate_random_date(start_date, end_date):
+    # Ensure we are working with date objects
+    if isinstance(start_date, datetime):
+        start_date = start_date.date()
+    if isinstance(end_date, datetime):
+        end_date = end_date.date()
+
     diff = end_date - start_date
-    random_date = start_date + timedelta(days=random.randint(0, diff.days)) # diff.days - number of days between start and end dates
-    return random_date.date()
+    random_date = start_date + timedelta(days=random.randint(0, diff.days))
+    return random_date  # This is now always a date (YYYY-MM-DD)
+
 
 def random_decimal(min_val, max_val, dec_places=2):
     return round(random.uniform(min_val, max_val), dec_places)

@@ -1,7 +1,8 @@
 import random
 from faker import Faker     # for generating fake data
+from datetime import datetime, timedelta
 
-from helpers import random_decimal
+from helpers import random_decimal, generate_random_date
 
 fake = Faker('en_US')  # fake data as if from Poland
 
@@ -18,7 +19,8 @@ def generate_KLIENT_updates(num, ids):
 def generate_AGENT_updates(num, ids):
     updates = []
     for id in random.sample(ids, min(num, len(ids))):
-        updates.append(f"UPDATE Agent SET Placowka = '{fake.city()}' WHERE ID_agenta = '{id}';")
+        change_date = generate_random_date(datetime(2021, 2, 1), datetime(2025, 12, 31)) #2nd snapshot dates
+        updates.append(f"UPDATE Agent SET Placowka = '{fake.city()}', Ostatnia_data_zmiany_placowki = '{change_date}' WHERE ID_agenta = '{id}';")
     return updates
 
 def generate_ANALITYK_updates(num, ids):
@@ -58,7 +60,7 @@ def generate_ODSZKODOWANIE_updates(num, ids):
         updates.append(f"UPDATE Odszkodowanie SET _Status = '{random.choice(['oczekuje', 'zrealizowane', 'anulowane', 'opoznione', 'w toku'])}' WHERE ID_odszkodowania = '{id}';")
     return updates
 
-def generate_ODWOLANIE_updates(num, ids):   #FIXME ??
+def generate_ODWOLANIE_updates(num, ids):
     updates = []
     for id in random.sample(ids, min(num, len(ids))):
         updates.append(f"UPDATE Odwolanie SET _Status = '{random.choice(['przyjete', 'przetwarzane', 'zakonczone'])}' WHERE ID_odwolania = '{id}';")

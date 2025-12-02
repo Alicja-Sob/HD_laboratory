@@ -1,7 +1,7 @@
 import os
 import logging
 
-from data_generation.generating_excel_data import generate_excel_entry
+from generating_excel_data import generate_excel_entry
 from generating_inserts import *
 from generating_updates import *
 from helpers import *
@@ -14,7 +14,7 @@ fake = Faker('en_US')  # fake data as if from Poland
 Each table in a seperate bulk file but all updates in one sql file
 """
 
-def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates = None, updates = False, excel_post = 5000):
+def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates = None, updates = False, excel_post = 10000):
     folder = os.makedirs(os.path.join("snapshots", snapshot), exist_ok=True) or os.path.join("snapshots", snapshot)
 
     # ---------- generating KLIENT table ----------
@@ -54,7 +54,9 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
     logging.info("done writing ZDARZENIE inserts to file")
 
     # ---------- generating POSTEPOWANIE table ----------
-    postepowanie_rows = list(generate_POSTEPOWANIE_insert(nums[6], start_date, end_date, polisa_ids, zdarzenie_ids)) # 1mln
+    postepowanie_rows_all = list(generate_POSTEPOWANIE_insert(nums[6], start_date, end_date, polisa_ids, zdarzenie_rows)) # 1mln
+    postepowanie_rows = [row[:7] for row in postepowanie_rows_all]  # DB insert rows
+    list_for_excel = [row[7] for row in postepowanie_rows_all]  # Excel metadata
     write_bulk_file(os.path.join(folder, "Postepowanie_inserts"), postepowanie_rows)
     postepowanie_ids = [row[0] for row in postepowanie_rows] # for later foreign keys
     logging.info("done writing POSTEPOWANIE inserts to file")
@@ -65,7 +67,7 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
     logging.info("done writing POSTEPOWANIE-ANALITYK inserts to file")
 
     # ---------- generating ODWOLANIE table ----------
-    odwolanie_rows = list(generate_ODWOLANIE_insert(nums[7], start_date, end_date, postepowanie_ids)) # 200k
+    odwolanie_rows = list(generate_ODWOLANIE_insert(nums[7], start_date, end_date, postepowanie_rows)) # 200k
     write_bulk_file(os.path.join(folder, "Odwolanie_inserts"), odwolanie_rows)
     odwolanie_ids = [row[1] for row in odwolanie_rows]
     logging.info("done writing ODWOLANIE inserts to file")
@@ -89,14 +91,15 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
     logging.info("done writing PLATNOSC inserts to file")
 
     # ------------------ generating excel ------------------
-    dokumenty = generate_excel_entry(random.sample(postepowanie_ids, excel_post), start_date, end_date, random.randint(7, 15))  # n = 3 documents each
+    dokumenty = generate_excel_entry(random.sample(postepowanie_ids, excel_post), list_for_excel, 40)  # n = 3 documents each
     write_excel_file(os.path.join("snapshots", f"dokumenty_{snapshot}"), dokumenty)
     logging.info("done generating EXCEL file")
 
     # ------------------ generating updates for a snapshot ------------------
-    if updates: # FIXME load to snapshot 2 folder and not snapshot1.. or just no folder?
-        write_update_file(os.path.join("snapshots", "updates"), generate_KLIENT_updates(nums_updates[0], klient_ids), mode='w')
-        write_update_file(os.path.join("snapshots", "updates"), generate_AGENT_updates(nums_updates[1], agent_ids))
+    if updates:
+        write_update_file(os.path.join("snapshots", "updates"), generate_AGENT_updates(nums_updates[1], agent_ids), mode='w')
+        """
+        write_update_file(os.path.join("snapshots", "updates"), generate_KLIENT_updates(nums_updates[0], klient_ids))
         write_update_file(os.path.join("snapshots", "updates"), generate_ANALITYK_updates(nums_updates[2], analityk_ids))
         write_update_file(os.path.join("snapshots", "updates"), generate_PRACOWNIK_updates(nums_updates[3], pracownik_ids))
         write_update_file(os.path.join("snapshots", "updates"), generate_POLISA_updates(nums_updates[4], polisa_ids))
@@ -104,4 +107,5 @@ def generating_time_snapshot(snapshot, start_date, end_date, nums, nums_updates 
         write_update_file(os.path.join("snapshots", "updates"), generate_NAPRAWY_updates(nums_updates[6], naprawy_ids))
         write_update_file(os.path.join("snapshots", "updates"), generate_ODSZKODOWANIE_updates(nums_updates[7], odszkodowanie_ids))
         write_update_file(os.path.join("snapshots", "updates"), generate_ODWOLANIE_updates(nums_updates[8], odwolanie_ids))
+        """
         logging.info("Done writing updates to file")

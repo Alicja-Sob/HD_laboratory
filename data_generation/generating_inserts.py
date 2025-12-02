@@ -4,7 +4,6 @@ import uuid
 from faker import Faker     # for generating fake data
 from datetime import datetime, timedelta
 from helpers import generate_random_date, random_decimal, generate_unique_pesel, generate_unique_id, splitting_id_pool
-
 fake = Faker('en_US')  # fake data as if from US cause polish signs
 
 """
@@ -16,6 +15,9 @@ AND ALL THE DATES ARE MATCHING BETWEEN LIKE AT LEAST 5 TABLES, THE COMPANY NAMES
 all_pesels = set()
 existing_ids = set()
 all_pracownik_ids = set()
+
+def d2dt(date):
+    return datetime.combine(date, datetime.min.time())
 
 # ---------- GENERATING INSERTS ----------
 def generate_KLIENT_insert(num, start_date, end_date):
@@ -35,6 +37,10 @@ def generate_PRACOWNIK_insert(num, start_date, end_date):
         drugie_imie = fake.first_name() if random.random() < 0.25 else ""
         nazwisko = fake.last_name()
         data_zatrudnienia = generate_random_date(start_date, end_date)
+
+#        datetime_zatrudnienie = datetime.combine(data_zatrudnienia, datetime.min.time())
+#        data_zakonczenia = generate_random_date(datetime_zatrudnienie, end_date)
+#        yield [id_pracownika, pesel, imie, drugie_imie, nazwisko, data_zatrudnienia, data_zakonczenia]
         yield [id_pracownika, pesel, imie, drugie_imie, nazwisko, data_zatrudnienia]
 
 def generate_AGENT_insert(num, pracownik_ids):
@@ -43,8 +49,8 @@ def generate_AGENT_insert(num, pracownik_ids):
     for id in agent_id_pool:
         id_agenta = id    # foreign key
         placowka = fake.city()  # idk if this should be a full address or if just a city is fine
-        specjalnosc = random.choice(['majatkowe', 'osobowe', 'komunikacyjne', 'turystyczne']) if random.random() < 0.05 else ""
-        yield [id_agenta, placowka, specjalnosc]
+        specjalnosc = random.choice(['majatkowe', 'osobowe', 'komunikacyjne', 'turystyczne']) if random.random() > 0.05 else ""
+        yield [id_agenta, placowka, specjalnosc, ""]
 
 def generate_ANALITYK_insert(num, pracownik_ids):
     # idk if these are alright, made them up but idk what type of jobs are there actually in a firm like this
@@ -87,24 +93,36 @@ def generate_ZDARZENIE_insert(num, start_date, end_date):
         yield [id_zdarzenia, data_zdarzenia, lokalizacja, rodzaj]
 
 
-def generate_POSTEPOWANIE_insert(num, start_date, end_date, polisy, zdarzenia):
+def generate_POSTEPOWANIE_insert(num, start_date, end_date, polisy, zdarzenia_rows):
     for _ in range(num):
+        polisa = random.choice(polisy)
+        zdarzenie_row = random.choice(zdarzenia_rows)
+        decyzja = random.choice(['przyznana', 'nie przyznana', 'przyznana czesciowo'])
+        
+        datetime_zdarzenia = d2dt(zdarzenie_row[1])
+        id_zdarzenia = zdarzenie_row[0]
+
         id_postepowania = generate_unique_id(existing_ids)
-        data_rozpoczecia = generate_random_date(start_date, end_date)   # FIXME: this should to be between the start and end dates of the polisa associated with this!!
+        data_rozpoczecia = generate_random_date(datetime_zdarzenia, end_date)   # FIXME: this should to be between the start and end dates of the polisa associated with this!!
         data_zakonczenia = data_rozpoczecia + timedelta(days=random.randint(365, 365 * 5))
         liczba_dokumentow = random.randint(1, 50) # FIXME: this should correspond to the amount of files in the excel
-        polisa = random.choice(polisy)
-        zdarzenie = random.choice(zdarzenia)
-        decyzja = random.choice(['przyznana', 'nie przyznana', 'przyznana czesciowo'])
-        yield [id_postepowania, data_rozpoczecia, data_zakonczenia, liczba_dokumentow, polisa, zdarzenie, decyzja]
+        list_for_excel = [data_rozpoczecia,data_zakonczenia, id_postepowania]
+        yield [id_postepowania, data_rozpoczecia, data_zakonczenia, liczba_dokumentow, polisa, id_zdarzenia, decyzja, list_for_excel]
 
 def generate_ODWOLANIE_insert(num, start_date, end_date, postepowania):
     for _ in range(num):
         postepowanie = random.choice(postepowania)
+
+        id_postepowania = postepowanie[0]
+        # czasem zadziala xd
+        datetime_konca_postepowania = d2dt(postepowanie[2])
+        if datetime_konca_postepowania > end_date:
+            datetime_konca_postepowania = start_date
+
         id_odwolania = generate_unique_id(existing_ids)
         _status = random.choice(['przyjete', 'przetwarzane', 'zakonczone'])
-        data_odwolania = generate_random_date(start_date, end_date) # FIXME: should be after end date of the postepowanie associated
-        yield [postepowanie, id_odwolania, _status, data_odwolania]
+        data_odwolania = generate_random_date(datetime_konca_postepowania, end_date) # FIXME: should be after end date of the postepowanie associated
+        yield [id_postepowania, id_odwolania, _status, data_odwolania]
 
 def generate_ODSZKODOWANIE_insert(num, postepowania):
     for _ in range(num):
