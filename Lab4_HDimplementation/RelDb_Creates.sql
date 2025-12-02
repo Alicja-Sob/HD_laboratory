@@ -22,10 +22,20 @@ CREATE TABLE Odszkodowanie (
 CREATE TABLE Dokumentacja (
 	ID_dokumentacja INT IDENTITY(1,1) PRIMARY KEY,
 	Autor VARCHAR(50) NOT NULL,
-	ilosc_dokumentow VARCHAR(10) CHECK (ilosc_dokumentow IN ('1-5', '5-10', '15-20', '25-30', 'powy¿ej 30'))  NOT NULL,
+	ilosc_dokumentow VARCHAR(10) CHECK (ilosc_dokumentow IN ('1-5', '5-10', '10-15', '15-20', '20-25', '25-30', 'powyzej 30'))  NOT NULL,
 	srednie_opoznienie VARCHAR(25) CHECK (srednie_opoznienie IN ('ponizej tygodnia', 'tydzien - 2 tygodnie','2 tygodnie - 3 tygodnie', '3 tygodnie - miesiac', 'powyzej miesiaca'))  NOT NULL,
-	glowny_typ_dokumentow VARCHAR(13) CHECK (glowny_typ_dokumentow IN ('Umowa', 'Raport', 'Faktura', 'Notatka', 'Protoko³', 'Zaswiadczenie', 'Zawiadomienie', 'Inne')) NOT NULL
+	glowny_typ_dokumentow VARCHAR(13) CHECK (glowny_typ_dokumentow IN ('Umowa', 'Raport', 'Faktura', 'Notatka', 'Protokol', 'Zaswiadczenie', 'Zawiadomienie', 'Inne')) NOT NULL
 );
+/*
+USE HurtowniaDanychRel;
+
+ALTER TABLE Dokumentacja
+DROP CONSTRAINT CK_Dokumentacja_ilosc_dokumentow;  -- replace with the actual constraint name
+
+ALTER TABLE Dokumentacja
+ADD CONSTRAINT CK_Dokumentacja_ilosc_dokumentow
+CHECK (ilosc_dokumentow IN ('1-5', '5-10', '10-15', '15-20', '20-25', '25-30', 'powyzej 30'));
+*/
 
 -- tabela Data
 CREATE TABLE _Data (

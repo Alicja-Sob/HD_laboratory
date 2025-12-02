@@ -3,7 +3,7 @@ GO
 -- ----- ----- ----- TABELE WYMIAROW ----- ----- ----- --
 
 -- tabela Dokumentacja
-INSERT INTO Dokumentacja (Autor, ilosc_dokumentow, srednie_opoznienie, glowny_typ_dokumentow) VALUES
+/*INSERT INTO Dokumentacja (Autor, ilosc_dokumentow, srednie_opoznienie, glowny_typ_dokumentow) VALUES
     ('Norris', '15-20', 'ponizej tygodnia', 'Zaswiadczenie'),
     ('Odonnell', '5-10', 'ponizej tygodnia', 'Faktura'),
     ('Washington', 'powy¿ej 30', '2 tygodnie - 3 tygodnie', 'Faktura'),
@@ -41,20 +41,25 @@ INSERT INTO Klient (PESEL, Pelne_ImieNazwisko) VALUES
     ('20251331726','Steven Stevenson'),
     ('21320565318','Mckeanziegh Smith'),
     ('09222796148','Jeffrey Joffrey Robbinson');
-
+*/
 
 -- ----- ----- ----- TABELE FAKTOW ----- ----- ----- --
+DELETE FROM Kompilacja_Dokumentacji;
+
+DELETE FROM Zakup_Polisy;
+
+DELETE FROM Postepowanie;
 
 -- tabela Analiza Dokumentow
 INSERT INTO Postepowanie (ID_dataRozpoczecia_Postepowania, ID_dataZakonczenia_Postepowania, ID_dataRozpoczecia_Polisy, ID_dataZakonczeniaPolisy, ID_data_Zdarzenia, ID_zdarzenie, ID_decyzja, ID_polisa, ID_odszkodowanie, ID_postepowanie, ilosc_dokumentow, ilosc_analitykow, czas_trwania, wartosc_odszkodowania) VALUES
-    (4,1,5,1,4,1,2,1,1,'06e0c8473e9d4809bc37',2,2,1010,5432.21),
-    (4,1,3,2,5,2,1,2,1,'5370cf8e4f044111837b',3,5,900,112233.44),
-    (4,2,5,1,4,3,1,3,2,'33369530fbb94f77be2f',5,3,300,234.22),
-    (4,2,3,2,5,4,2,4,3,'fa38a57a9ba24838a88f',5,3,200,12324.23),
-    (3,5,3,1,3,5,1,4,4,'e870c40d3c1d415d8297',3,4,500,112322.44),
-    (3,5,3,4,3,3,2,5,2,'03fdb30fbb2e4d968c76',4,4,666,1112.23),
-    (5,4,3,2,3,2,2,2,4,'aa34a70dd9f54004a5a6',1,5,123,123.45),
-    (5,1,3,1,3,5,1,3,3,'352fb2e456b447e19336',4,5,321,100.40);
+    (4,1,5,1,4,1,2,1,1,'b7e129ad6af64200981c',2,2,1010,5432.21),
+    (4,1,3,2,5,2,1,2,1,'5b371c3c564f49f09e98',3,5,900,112233.44),
+    (4,2,5,1,4,3,1,3,2,'efe2f4ee04ca4eac9d24',5,3,300,234.22),
+    (4,2,3,2,5,4,2,4,3,'a0e270b68f704f9c80e5',5,3,200,12324.23),
+    (3,5,3,1,3,5,1,4,4,'1a186ed4d8334c659f14',3,4,500,112322.44),
+    (3,5,3,4,3,3,2,5,2,'5f766b2617184039a443',4,4,666,1112.23),
+    (5,4,3,2,3,2,2,2,4,'976dda9a327f49598705',1,5,123,123.45),
+    (5,1,3,1,3,5,1,3,3,'163c8555f8764962b12b',4,5,321,100.40);
 
 -- ----- ----- ----- TABELE POSREDNICZACE ----- ----- ----- --
 
@@ -72,10 +77,51 @@ INSERT INTO Zakup_Polisy (ID_agent, ID_klient, ID_polisa) VALUES
 
 -- tabela Zebranie Dokumentu
 INSERT INTO Kompilacja_Dokumentacji (ID_postepowanie, ID_dokumentacja) VALUES
-    ('06e0c8473e9d4809bc37',1),
-    ('03fdb30fbb2e4d968c76',2),
-    ('fa38a57a9ba24838a88f',3),
-    ('06e0c8473e9d4809bc37',4),
-    ('352fb2e456b447e19336',5),
-    ('03fdb30fbb2e4d968c76',5),
-    ('03fdb30fbb2e4d968c76',4);
+    ('5b371c3c564f49f09e98',1),
+    ('163c8555f8764962b12b',2),
+    ('efe2f4ee04ca4eac9d24',3),
+    ('5b371c3c564f49f09e98',4),
+    ('5f766b2617184039a443',5),
+    ('163c8555f8764962b12b',5),
+    ('163c8555f8764962b12b',4);
+
+    /*
+SELECT COUNT(*) FROM Dokumentacja;
+SELECT TOP 10 * FROM Dokumentacja;
+SELECT COUNT(*) FROM Polisa;
+SELECT COUNT(*) FROM Klient;
+SELECT COUNT(*) FROM Agent;
+SELECT COUNT(*) FROM Zdarzenie;
+
+
+SELECT 
+    k.ID_klient,
+    k.Pelne_ImieNazwisko,
+    COUNT(zp.ID_polisa) AS Liczba_Polis
+FROM Klient k
+LEFT JOIN Zakup_Polisy zp
+        ON k.ID_klient = zp.ID_klient
+GROUP BY 
+    k.ID_klient,
+    k.Pelne_ImieNazwisko
+ORDER BY 
+    Liczba_Polis DESC;
+
+
+
+SELECT 
+    ilosc_dokumentow,
+    COUNT(*) AS liczba
+FROM Dokumentacja
+GROUP BY ilosc_dokumentow
+ORDER BY 
+    CASE ilosc_dokumentow
+        WHEN '1-5' THEN 1
+        WHEN '5-10' THEN 2
+        WHEN '15-20' THEN 3
+        WHEN '25-30' THEN 4
+        WHEN 'powy¿ej 30' THEN 5
+    END;
+
+
+*/
