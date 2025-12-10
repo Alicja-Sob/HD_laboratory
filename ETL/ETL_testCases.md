@@ -9,7 +9,7 @@
 - Run ETL.
 - Check if the number of rows in fact tables corresponds to the number of related rows in the sources.
 
-- [ ] __TEST CASE 3__ (ETL 2)
+- [x] __TEST CASE 3__ (ETL 2)
 - Load T2 snapshot to the source db/file.
 - Run ETL.
 - Check if the new row is added to the SCD2 dimension.
@@ -22,7 +22,7 @@
 - run ETL.
 - Check if the new fact in DW is referring to the updated dimension row (e.g. sales fact refers to the employee with the updated education status)
 
-- [ ] __TEST CASE 5__ (ETL 1)
+- [x] __TEST CASE 5__ (ETL 1)
 - Process the cube. See if it finishes without any errors.
 
 - [ ] __TEST CASE 6__ (ETL 3)
