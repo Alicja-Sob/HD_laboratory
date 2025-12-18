@@ -20,6 +20,8 @@ DBCC CHECKIDENT ('dbo.Klient', RESEED, 0);
 DELETE FROM Agent;
 DBCC CHECKIDENT ('dbo.Agent', RESEED, 0);
 
+--SELECT COUNT(*) FROM Postepowanie;
+
 -- DANE STATYCZNE
 /*
 DELETE FROM Decyzja;
@@ -34,4 +36,8 @@ DBCC CHECKIDENT ('dbo.Odszkodowanie', RESEED, 0);
 
 --SELECT * FROM _Data;
 --SELECT * FROM Typ_Dokument;
+
+SELECT COUNT(*) FROM Postepowanie;
+SELECT COUNT(*) FROM Kompilacja_dokumentacji;
+SELECT COUNT(*) FROM Zakup_Polisy;
 GO

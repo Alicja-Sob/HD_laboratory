@@ -7,6 +7,9 @@ GO
 
 -- DECLARING START AND END DATES
 
+SELECT COUNT(*) FROM _Data;
+SELECT TOP 10 * FROM _Data;
+
 DECLARE @EarliestDate date;	-- TODO: check what the earliest references date actually is
 
 DECLARE @StartDateT1 date;
@@ -15,7 +18,7 @@ DECLARE @EndDateT1 date;
 DECLARE @StartDateT2 date;
 DECLARE @EndDateT2 date;
 
-SELECT @EarliestDate ='1937-01-01', @StartDateT1 = '2005-01-01', @EndDateT1 = '2020-12-31', @StartDateT2 = '2021-02-01', @EndDateT2 = '2025-12-31';
+SELECT @EarliestDate ='1937-01-01', @StartDateT1 = '2005-01-01', @EndDateT1 = '2020-12-31', @StartDateT2 = '2021-02-01', @EndDateT2 = '2040-12-31';
 
 -- WHILE LOOP
 
@@ -28,7 +31,7 @@ WHILE @DateInProcess <= @EndDateT2
 		VALUES (
 			@DateInProcess,
 			CAST (Day(@DateInProcess) as varchar(2)),
-			CAST (DATENAME(Month, @DateInProcess) as varchar(9)),
+			CAST (DATENAME(Month, @DateInProcess) as varchar(20)),
 			CAST (Month(@DateInProcess) as INT),
 			CAST (Year(@DateInProcess) as varchar(4))
 		);
