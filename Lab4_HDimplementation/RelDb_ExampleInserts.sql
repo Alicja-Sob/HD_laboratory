@@ -93,6 +93,11 @@ SELECT COUNT(*) FROM Klient;
 SELECT COUNT(*) FROM Agent;
 SELECT COUNT(*) FROM Zdarzenie;
 
+SELECT COUNT(*) FROM Decyzja;
+SELECT * FROM Decyzja;
+
+SELECT COUNT(*) FROM _Data;
+SELECT * FROM _Data;
 
 SELECT 
     k.ID_klient,

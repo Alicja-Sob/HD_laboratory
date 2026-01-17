@@ -42,11 +42,10 @@ CREATE TABLE _Data (
 	ID_data INT IDENTITY(1,1) PRIMARY KEY,
 	_Data_full DATE NOT NULL,
 	Dzien VARCHAR(2) NOT NULL,
-	Miesiac VARCHAR(9) NOT NULL,
+	Miesiac VARCHAR(20) NOT NULL,
 	Miesiac_numer INT CHECK (Miesiac_numer BETWEEN 1 AND 12) NOT NULL,
 	Rok VARCHAR(4) NOT NULL
 );
-
 
 -- tabela Zdarzenie
 CREATE TABLE Zdarzenie (
@@ -112,6 +111,13 @@ CREATE TABLE Postepowanie (
 );
 
 GO
+
+SELECT COUNT (*) FROM _Data;
+SELECT TOP 10 * FROM _Data;
+
+SELECT COUNT(*) FROM Agent;
+SELECT TOP 10 * FROM Agent;
+SELECT * FROM Agent WHERE ID_pracownika = 'fd57ed46b505474eab05';
 
 -- ----- ----- ----- TABELE POSREDNICZACE ----- ----- ----- --
 
