@@ -10,12 +10,12 @@ GO
 IF (OBJECT_ID('dbo.DocTemp') is NOT NULL) DROP TABLE dbo.DocTemp;
 CREATE TABLE dbo.DocTemp(
 	A_lp varchar(10),
-	B_nazwa varchar(255),	-- idk if those sizez are correct
+	B_nazwa varchar(255),
 	C_postepowanieID varchar(20),
 	D_typDok varchar(255),
 	E_autor varchar(255),
 	F_dataDostarczenia date,
-	G_info varchar(100)	 -- no idea how long should this actually be (should prob set this in the generator)
+	G_info varchar(100)	
 	);
 GO
 
@@ -78,23 +78,18 @@ GROUP BY
 	Temp.C_postepowanieID;
 GO
 
-SELECT COUNT(*) FROM vDataForDokumentacja;
-SELECT TOP 10 * FROM vDataForDokumentacja;
 
 
 MERGE INTO Dokumentacja AS TT
 	USING vDataForDokumentacja AS ST
 		ON TT.Autor LIKE '%' + ST.Autor + '%'
-		--AND TT.ilosc_dokumentow = ST.ilosc_dokumentow
-		--AND TT.srednie_opoznienie = ST.srednie_opoznienie
-		--AND TT.glowny_typ_dokumentow = ST.glowny_typ_dokumentow
 		WHEN NOT MATCHED THEN	-- wstawianie NOWYCH dokumentacji
 			INSERT VALUES (ST.Autor, ST.ilosc_dokumentow, ST.srednie_opoznienie ,ST.glowny_typ_dokumentow)
 		WHEN NOT MATCHED BY SOURCE THEN	-- USUWANIE dokumentacji bez pasujacej tablei faktu?
 			DELETE;
 GO
 
-SELECT COUNT(*) FROM Dokumentacja;
+--SELECT COUNT(*) FROM Dokumentacja;
 
 
 DROP TABLE dbo.DocTemp;

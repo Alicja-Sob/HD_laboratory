@@ -17,10 +17,11 @@ JOIN [HurtowniaDanychRel].dbo.[Klient] AS Hklient
 	ON Hklient.[PESEL] = polisa.[Klient] -- match klient dimension
 /*JOIN [HurtowniaDanychRel].dbo.[Agent] Hagent
 	ON Hagent.[ID_pracownika] = polisa.[Agent]; -- match agent dimension*/
-JOIN [HurtowniaDanychRel].dbo.[Agent] AS Hagent	-- matching agent dimension, considering scd (idk if the generated dates are good enough for this)
+JOIN [HurtowniaDanychRel].dbo.[Agent] AS Hagent	-- matching agent dimension, considering scd
 	ON Hagent.[ID_pracownika] = polisa.[Agent]
-	--AND polisa.[Data_rozpoczecia] >= Hagent.[Data_zatrudnienia]
-	AND polisa.[Data_rozpoczecia] < COALESCE(Hagent.[Data_zakonczenia], '9999-12-31');
+	WHERE polisa.[Data_rozpoczecia] between Hagent.[Data_zatrudnienia] AND COALESCE(Hagent.[Data_zakonczenia], CAST(GETDATE() AS DATE));
+
+	--AND polisa.[Data_rozpoczecia] < COALESCE(Hagent.[Data_zakonczenia], '9999-12-31');
 
 GO
 

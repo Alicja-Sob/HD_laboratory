@@ -234,3 +234,10 @@ DROP VIEW vPostepowanieDuration;
 DROP VIEW vPostepowanieOdszkodowanie;
 DROP VIEW vDataForPost;
 GO
+
+SELECT MAX(_Data_full) AS LatestDate
+FROM _Data;
+
+SELECT MAX(Data_zakonczenia) AS LatestEndDate
+FROM SystemPrzechowujacyDane.dbo.Postepowanie;
+

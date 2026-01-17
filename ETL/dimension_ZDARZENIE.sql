@@ -25,7 +25,7 @@ MERGE INTO Zdarzenie AS TT
 		AND TT.Lokalizacja = ST.Lokalizacja
 		AND TT.Rodzaj = ST.Rodzaj
 		WHEN NOT MATCHED THEN -- wstawianie NOWYCH polis
-			INSERT VALUES (ST.NR_zdarzenia, Lokalizacja, Rodzaj)
+			INSERT VALUES (ST.NR_zdarzenia, ST.Lokalizacja, ST.Rodzaj)
 		WHEN NOT MATCHED BY SOURCE THEN -- USUWANIE zdarzen bez pasujacej tabeli faktu
 			DELETE;
 GO
