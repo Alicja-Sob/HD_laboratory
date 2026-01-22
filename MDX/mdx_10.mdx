@@ -1,0 +1,13 @@
+/* Jaka jest srednia ilosc dokumentow dostarczonych 2 tygodnie po rozpoczeciu postepowania dla 
+kazdej z kategorii polis?  */
+
+WITH MEMBER [Measures].[Srednia Ilosc Dok] AS 
+	AVG( [Dokumentacja].[ID Dokumentacja].Members, 
+		 [Measures].[Ilosc Dokumentow] ), format_string = "0.00"
+
+SELECT 
+		[Measures].[Srednia Ilosc Dok] ON COLUMNS, 
+		EXCEPT( [Polisa].[Kategoria].Members, 
+				{ [Polisa].[Kategoria].[All] } ) ON ROWS 
+FROM [HurtowniaDanychRel_cube1] 
+WHERE  [Dokumentacja].[Srednie Opoznienie].&[tydzien - 2 tygodnie]

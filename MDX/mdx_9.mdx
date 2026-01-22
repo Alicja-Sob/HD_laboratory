@@ -1,0 +1,25 @@
+/* W postepowaniach zwi¹zanych z ktora z kategoria polisy klienci najszybciej dostarczali 
+dokumenty przez ostatnie 2 lata? */
+
+WITH 
+MEMBER [Measures].[last Year] 
+	AS AVG( Filter( [ID Data Zakonczenia Postepowania].[Rok].Members,
+					[ID Data Zakonczenia Postepowania].[Rok].CurrentMember.Name = "2024" ), 
+			[Measures].[Ilosc Dokumentow] ), format_string = "0.00"
+
+MEMBER [Measures].[this Year] 
+	AS AVG( Filter( [ID Data Zakonczenia Postepowania].[Rok].Members, 
+					[ID Data Zakonczenia Postepowania].[Rok].CurrentMember.Name = "2025" ), 
+			[Measures].[Ilosc Dokumentow] ), format_string = "0.00"
+
+MEMBER [Measures].[TwoYear Average] 
+	AS ([Measures].[last Year] + [Measures].[this Year]) / 2, format_string = "0.00"
+
+SELECT 
+	{ [Measures].[this Year], [Measures].[last Year], [Measures].[TwoYear Average] } ON COLUMNS, 
+	  ORDER ( 
+		EXCEPT( [Polisa].[Kategoria].Members, 
+				{ [Polisa].[Kategoria].[All] } ), 
+		[Measures].[TwoYear Average], DESC ) ON ROWS 
+FROM [HurtowniaDanychRel_cube1] 
+WHERE [Dokumentacja].[Srednie Opoznienie].&[ponizej tygodnia]

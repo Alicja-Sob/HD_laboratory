@@ -1,0 +1,50 @@
+/* Porownaj srednia calkowita wysokosc wyplaconego odszkodowania przez ostatni rok dla danego 
+klienta w zaleznoœci od ilosci wykupionych przez niego polis  */
+WITH 
+-- I'm not sure how else to do it / how to do it better ngl
+SET [1 to 2] AS
+    FILTER(
+        [Klient].[ID Klient].Members,
+        [Measures].[Ilosc sprzedanych polis] >= 1
+        AND [Measures].[Ilosc sprzedanych polis] <= 2
+    )
+
+SET [3 to 5] AS
+    FILTER(
+        [Klient].[ID Klient].Members,
+        [Measures].[Ilosc sprzedanych polis] >= 3
+        AND [Measures].[Ilosc sprzedanych polis] <= 5
+    )
+
+SET [6 to 10] AS
+    FILTER(
+        [Klient].[ID Klient].Members,
+        [Measures].[Ilosc sprzedanych polis] >= 6
+        AND [Measures].[Ilosc sprzedanych polis] <= 10
+    )
+
+SET [more than 10] AS
+    FILTER(
+        [Klient].[ID Klient].Members,
+        [Measures].[Ilosc sprzedanych polis] > 10
+    )
+
+MEMBER [Measures].[Avg 1-2] AS
+    AVG([1 to 2], [Measures].[Wartosc Odszkodowania])
+
+MEMBER [Measures].[Avg 3-5] AS
+    AVG([3 to 5], [Measures].[Wartosc Odszkodowania])
+
+MEMBER [Measures].[Avg 6-10] AS
+    AVG([6 to 10], [Measures].[Wartosc Odszkodowania])
+
+MEMBER [Measures].[Avg >10] AS
+    AVG([more than 10], [Measures].[Wartosc Odszkodowania])
+
+SELECT
+    { [Measures].[Avg 1-2],
+      [Measures].[Avg 3-5],
+      [Measures].[Avg 6-10],
+      [Measures].[Avg >10] } ON COLUMNS
+FROM [HurtowniaDanychRel_cube1]
+WHERE [ID Data Zakonczenia Postepowania].[Rok].[2025]

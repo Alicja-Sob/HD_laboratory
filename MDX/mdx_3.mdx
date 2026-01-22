@@ -1,0 +1,15 @@
+/* Pokaz typy ubezpieczen najczesciej wyplacanych dla ubieglego miesiaca  */
+
+SELECT 
+	{ [ID Data Zakonczenia Postepowania].[Miesiac].CurrentMember.PrevMember,
+	  TOPCOUNT( 
+		EXCEPT( [Odszkodowanie].[Rodzaj Odszkodowania].Children,
+				{ [Odszkodowanie].[Rodzaj Odszkodowania].[Nie przyznane], 
+				  [Odszkodowanie].[Rodzaj Odszkodowania].[All], 
+				  [Odszkodowanie].[Rodzaj Odszkodowania].[unknown],
+				  [Odszkodowanie].[Rodzaj Odszkodowania].[Inne] } 
+			  ),3, 
+		( [ID Data Zakonczenia Postepowania].[Miesiac].CurrentMember.PrevMember, 
+		  [Measures].[Ilosc przeprowadzonych postepowan] ) ) } ON ROWS, 
+	[Measures].[Ilosc przeprowadzonych postepowan] ON COLUMNS 
+FROM [HurtowniaDanychRel_cube1]

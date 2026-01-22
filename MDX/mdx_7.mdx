@@ -1,0 +1,16 @@
+/* Porownaj najmniejsze i najwieksze wyplacone kwoty odszkodowania dla kazdej kategorii polisy */
+
+SELECT 
+    { [Measures].[Najwieksza wyplacona kwota],
+     [Measures].[Najmniejsza wyplacona kwota] } ON COLUMNS,
+
+    ORDER(
+        EXCEPT(
+            [Polisa].[Kategoria].Members,
+            { [Polisa].[Kategoria].[All] }
+        ),
+        [Measures].[Najwieksza wyplacona kwota],
+        DESC
+    ) ON ROWS
+
+FROM [HurtowniaDanychRel_cube1]

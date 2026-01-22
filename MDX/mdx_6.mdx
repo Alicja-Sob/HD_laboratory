@@ -1,0 +1,87 @@
+/* Jaka jest srednia wysokosc wyplaconego odszkodowania dla polis rozpoczynajacych sie w 
+kolejnych miesiacach? */
+
+-- this is the simplest way for it to do the months properly unfortunately
+
+WITH 
+MEMBER [Measures].[January] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 1
+    ), [Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[February] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 2
+    ), [Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[March] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 3
+    ), [Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[April] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 4
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[May] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 5
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[June] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 6
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[July] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 7
+    ), [Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[August] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 8
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[September] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 9
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[October] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 10
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[November] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 11
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+MEMBER [Measures].[December] AS
+AVG(
+    Filter(
+        [ID Data Rozpoczecia Polisy].[Miesiac].Members,
+        [ID Data Rozpoczecia Polisy].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 12
+    ),[Measures].[Wartosc Odszkodowania]), format_string = "0.00"
+
+SELECT
+{
+    [Measures].[January], [Measures].[February], [Measures].[March],
+    [Measures].[April], [Measures].[May], [Measures].[June],
+    [Measures].[July], [Measures].[August], [Measures].[September],
+    [Measures].[October], [Measures].[November], [Measures].[December]
+} ON COLUMNS
+FROM [HurtowniaDanychRel_cube1]

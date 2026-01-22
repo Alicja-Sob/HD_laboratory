@@ -1,0 +1,132 @@
+/* Porownaj roznice w ilosci postêpowan zakoñczonych odmowa pomiedzy sasiednimi miesiacami 
+dla ostatnich 3 lat  */
+
+// not sure if itss fully coorrect, but it looks reasonable
+// it does take a really long time to process though, so presenting it isn't really viable ngl
+// like it honestly takes well over 10 minutes to even run this (ngl i didn't try it out to the end)
+// I only checked if the first 1 or 2 worked somehow
+
+WITH
+MEMBER [Measures].[Jan->Feb] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 2
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 1
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Feb->Mar] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 3
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 2
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Mar->Apr] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 4
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 3
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Apr->May] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 5
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 4
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[May->Jun] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 6
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 5
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Jun->Jul] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 7
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 6
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Jul->Aug] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 8
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 7
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Aug->Sep] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 9
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 8
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Sep->Oct] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 10
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 9
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Oct->Nov] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 11
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 10
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+MEMBER [Measures].[Nov->Dec] AS
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 12
+    ),[Measures].[Ilosc przeprowadzonych postepowan]) -
+SUM( Filter(
+        [ID Data Rozpoczecia Postepowania].[Miesiac].Members,
+        [ID Data Rozpoczecia Postepowania].[Miesiac].CurrentMember.Properties("Miesiac Numer", TYPED) = 11
+    ),[Measures].[Ilosc przeprowadzonych postepowan])
+
+
+SELECT
+	{[ID Data Rozpoczecia Postepowania].[Rok].[2024],
+	 [ID Data Rozpoczecia Postepowania].[Rok].[2023],
+	 [ID Data Rozpoczecia Postepowania].[Rok].[2022] } ON COLUMNS,
+	{
+		[Measures].[Jan->Feb], [Measures].[Feb->Mar], [Measures].[Mar->Apr],
+		[Measures].[Apr->May], [Measures].[May->Jun], [Measures].[Jun->Jul],
+		[Measures].[Jul->Aug], [Measures].[Aug->Sep], [Measures].[Sep->Oct],
+		[Measures].[Oct->Nov], [Measures].[Nov->Dec]
+	} ON ROWS
+FROM [HurtowniaDanychRel_cube1]
+WHERE [Decyzja].[Czy Przyznane].&[False]

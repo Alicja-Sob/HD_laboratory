@@ -1,0 +1,37 @@
+/* Porownaj ilosci dostarczonych dokumentow, których autorem jest klient pomiedzy 
+postepowaniami rozpoczetymi w sasiednich miesiacach w ciagu ostatnich 5 lat  */
+
+// I'M PRETTY SURE IT'S NOT POSSIBLE TO DO THIS IN MDX OR IS SO HARD/ SUCH AN OBSCURE METHOD
+// THAT IT'S WAY, WAY BEYOND MY CAPABILITIES
+
+// ALTERNATE ONE IG
+
+/* Porownaj srednia i calkowita ilosc zebranych dokumentow oraz srednia wyplacone odszkodowanie w zaleznosci od kategorii polisy w ramach 
+ktorej realizowane jest postepowanie */
+WITH
+MEMBER [Measures].[Srednia ilosc dokumentow] AS
+    [Measures].[P_srednia_ilosc_dokumentow],
+    FORMAT_STRING = "0.00"
+
+MEMBER [Measures].[Srednie Odszkodowanie] AS
+    [Measures].[P_srednie_wyplacone_odszkodowanie],
+    FORMAT_STRING = "0.00"
+
+SELECT
+{
+    [Measures].[Ilosc Dokumentow],
+    [Measures].[Srednia ilosc dokumentow],
+    [Measures].[Srednie Odszkodowanie]
+} ON COLUMNS,
+
+ORDER(
+    EXCEPT(
+        [Polisa].[Kategoria].Children,
+        { [Polisa].[Kategoria].[All] }
+    ),
+    [Measures].[Srednie Odszkodowanie],
+    DESC
+) ON ROWS
+
+FROM [HurtowniaDanychRel_cube1]
+

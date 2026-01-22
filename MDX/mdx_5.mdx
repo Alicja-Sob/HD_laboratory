@@ -1,0 +1,30 @@
+/* Porownaj procent dokumentow dla kazdego typu dokumentu, których autorem nie jest klient 
+pomiedzy postepowaniami rozpoczetymi w sasiednich miesiacach  w ciagu ostatnich 2 lat  */
+
+// I'M PRETTY SURE IT'S NOT POSSIBLE TO DO THIS IN MDX OR IS SO HARD/ SUCH AN OBSCURE METHOD
+// THAT IT'S WAY, WAY BEYOND MY CAPABILITIES
+
+//ALTERNATE ONE
+
+/* Porownaj sredni czas trwania i srednie wyplacone odszkodowanie dla postepowan realizowanych 
+w ramach polis rozpoczynajacych sie w okresie ostatnich 20 lat, w zaczynaj¹cych siê co 5 lat*/
+
+WITH MEMBER [Sredni czas] AS (PARALLELPERIOD([ID Data Rozpoczecia Polisy].[Hierarchy].[Rok], 1,
+                        [ID Data Rozpoczecia Polisy].[Hierarchy].CurrentMember), 
+                        [Measures].[P_sredni_czas_trwania]), format_string = "0.00"
+
+MEMBER [Srednie odszkodowanie] AS (PARALLELPERIOD([ID Data Rozpoczecia Polisy].[Hierarchy].[Rok], 1,
+    [ID Data Rozpoczecia Polisy].[Hierarchy].CurrentMember), 
+    [Measures].[P_srednie_wyplacone_odszkodowanie]), format_string = "0.00"
+
+SELECT  
+    {
+    [ID Data Rozpoczecia Polisy].[Hierarchy].[Rok].[2024],
+    [ID Data Rozpoczecia Polisy].[Hierarchy].[Rok].[2019],
+    [ID Data Rozpoczecia Polisy].[Hierarchy].[Rok].[2014],
+    [ID Data Rozpoczecia Polisy].[Hierarchy].[Rok].[2009],
+    [ID Data Rozpoczecia Polisy].[Hierarchy].[Rok].[2005]
+    } ON ROWS
+     ,
+{[Srednie odszkodowanie], [Sredni czas]} ON COLUMNS
+FROM [HurtowniaDanychRel_cube1];

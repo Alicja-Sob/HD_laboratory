@@ -1,0 +1,28 @@
+/* Porownaj wartosci szkod z tego miesiaca, z tym samym miesiacem poprzedniego roku,
+oraz tego samego miesiaca sprzed 2 lat */
+
+// Ad.2 - Hierarchy functions
+
+WITH MEMBER [Last Year] 
+	AS (PARALLELPERIOD([ID Data Zakonczenia Postepowania].[Hierarchy].[Rok], 1,
+			[ID Data Zakonczenia Postepowania].[Hierarchy].CurrentMember),
+			[Measures].[Wartosc Odszkodowania])
+
+MEMBER [Two years ago] 
+	AS (PARALLELPERIOD([ID Data Zakonczenia Postepowania].[Hierarchy].[Rok], 2,
+			[ID Data Zakonczenia Postepowania].[Hierarchy].CurrentMember),
+			[Measures].[Wartosc Odszkodowania])
+
+MEMBER [Measures].[This Year] 
+	AS [Measures].[Wartosc Odszkodowania]
+
+/*
+MEMBER [Measures].[This Year 2025] AS (
+    [ID Data Zakonczenia Postepowania].[Hierarchy].[Rok].[2025],
+    [Measures].[Wartosc Odszkodowania] )
+*/
+
+SELECT 
+	{ [ID Data Zakonczenia Postepowania].[Hierarchy].[Rok].[2025].[January] } ON ROWS, 
+	{ [This Year], [Last Year], [Two years ago] } ON COLUMNS 
+FROM [HurtowniaDanychRel_cube1];
